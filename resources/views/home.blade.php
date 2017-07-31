@@ -9,6 +9,11 @@
 
                 <div class="panel-body">
                     <a href="{{url ('/deckbuilder') }}">Let's Build a Deck</a>
+                    @if (Auth::User()->isAdmin)
+                        <p> You are an admin!</p>
+                    @else
+                        <p> You are definitely not an admin!</p>
+                    @endif
                 </div>
             </div>
         </div>
