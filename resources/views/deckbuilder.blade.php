@@ -1,0 +1,70 @@
+@extends ('layouts.app')
+
+
+@section('content')
+
+	<div class='container text-center'>
+		<h1>Siege! Deckbuilder</h1>
+
+		<p>Create New Deck</p>
+		<form class='form-inline' >
+			<div class='form-group' style='margin: 0 auto;'>	
+				<input type="text" name="deckName" placeholder="Name Your Deck">
+		    <select class="form-control" id="factionSelect" name="factionSelect">
+		      <option name='faction' value=''>Select Faction</option>
+		      <option name='faction' value='Monarch'>Monarch</option>
+		      <option name='faction' value='Invader'>Invader</option>
+		    </select>
+				<button class='btn btn-primary' value='submit' name='createDeck'>Create Deck</button>
+			</div>
+		
+		</form>
+		<br />
+		<p>or Select Existing Deck to Edit</p>
+		<br />
+		<form class='form-inline'>
+			<div class="form-group" style='margin: 0 auto;'>
+		    <select class="form-control" id="factionSelect" name="factionSelect">
+		      <option name='faction' value=''>Select Faction</option>
+		      <option name='faction' value='Monarch'>Monarch</option>
+		      <option name='faction' value='Invader'>Invader</option>
+		    </select>
+		
+		    <select class="form-control" id="factionSelect" name="factionSelect">
+		      <option name='faction' value=''>Choose Deck</option>
+		      <option name='faction' value='sampleDeck'>Sample Deck Name</option>
+		      <option name='faction' value='anotherDeck'>Another Deck</option>
+		    </select>
+				<button class='btn btn-primary' value='submit'>Select Deck</button>
+			</div>
+		</form>
+		<div class="alert alert-success" role="alert">
+		  <strong>Well done!</strong> Messaging will go here.
+		</div> 
+		<h2>Card Selector</h2>
+		<div class='row'>
+			<div class='col' id='myDeck'>
+				<div class='card card-block bg-faded'>
+					<h3 class="card-header">My Deck</h3>
+					<hr>
+					<h4>Spaces remaining</h4>
+				</div>
+			</div>
+			<div class='col' id='availableCards'>
+				<div class='card card-block bg-faded'>
+					<h3>Available cards</h3>
+					<hr>
+				</div>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col'>
+				<form>
+					<button class='btn btn-primary' value='submit' name='saveDeck'>Save Deck</button>
+					<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+@endsection
