@@ -11,21 +11,25 @@
 			<div class='form-group' style='margin: 0 auto;'>	
 				
 		    
-		    <div class="btn-group" data-toggle="buttons">
+		    <!-- <div class="btn-group" data-toggle="buttons">
 			  <label class="btn btn-primary">
-			    <input type="radio" name="options" id="option1" autocomplete="off" ng-click="toggleFaction()">Monarch
+			    <input type="radio" ng-change="isMonarch=true;">Monarch
 			  </label>
 			  <label class="btn btn-primary">
-			    <input type="radio" name="options" id="option2" autocomplete="off" ng-click="toggleFaction()">Invader
+			    <input type="radio" ng-change="isMonarch=false;">Invader
 			  </label>
 			  
-			</div>
-			<p ng-show="[[isMonarch]]">Monarch Selected [[isMonarch]]</p>
-			<p ng-hide="[[isMonarch]]">Invader Selected</p>
+			</div> -->
+			<button ng-click="isMonarch=true;">Monarch</button>
+			<button ng-click="isMonarch=false;">Invader</button>
+			<!-- <div ng-show="isMonarch">
+				<button ng-repeat='card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}' >[[card.name]]</button>
+			</div> -->
+			<hr>
+			<button ng-click="selected=true;" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
 			
-			
 			</div>
-		
+			<p ng-show="selected">Ta Daaaa!</p>
 		</form>
 		<br />
 		<p>or Select Existing Deck to Edit</p>
@@ -49,51 +53,53 @@
 		<div class="alert alert-success" role="alert">
 		  <strong>Well done!</strong> Messaging will go here.
 		</div> 
-		<h2>Card Selector</h2>
-		<div class='row'>
-			<div class='col' id='myDeck'>
-				<div class='card card-block bg-faded'>
-					<h3 class="card-header">My Deck</h3>
-					<hr>
-					<h4>Spaces remaining</h4>
+		<div ng-show="selected">
+			<h2>Card Selector</h2>
+			<div class='row'>
+				<div class='col' id='myDeck'>
+					<div class='card card-block bg-faded'>
+						<h3 class="card-header">My Deck</h3>
+						<hr>
+						<h4>Spaces remaining</h4>
+					</div>
+				</div>
+				<div class='col' id='availableCards'>
+					<h3>Available Cards</h3>
+					<table class="table table-hover">
+						<tr>
+							<th class>Qty</th>
+							<th>Name</th>
+							<th>Deck Points</th>
+							<th>Action</th>
+						</tr>
+						<tr ng-repeat="card in cards ">
+							<td>
+								0-3
+							</td>
+							<td>
+								[[card.name]]
+							</td>
+							<td>
+								[[card.deck_points]]
+							</td>
+							<td>
+								[[card.action]]
+							</td>
+						</tr>
+
+					</table>
 				</div>
 			</div>
-			<div class='col' id='availableCards'>
-				<h3>Available Cards</h3>
-				<table class="table table-hover">
-					<tr>
-						<th class>Qty</th>
-						<th>Name</th>
-						<th>Deck Points</th>
-						<th>Action</th>
-					</tr>
-					<tr ng-repeat="card in cards ">
-						<td>
-							0-3
-						</td>
-						<td>
-							[[card.name]]
-						</td>
-						<td>
-							[[card.deck_points]]
-						</td>
-						<td>
-							[[card.action]]
-						</td>
-					</tr>
-
-				</table>
+			<div class='row'>
+				<div class='col'>
+					<form>
+						<input type="text" name="deckName" placeholder="Name Your Deck">
+						<button class='btn btn-primary' value='submit' name='saveDeck'>Save Deck</button>
+						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
+					</form>
+				</div>
+				
 			</div>
-		</div>
-		<div class='row'>
-			<div class='col'>
-				<form>
-					<input type="text" name="deckName" placeholder="Name Your Deck">
-					<button class='btn btn-primary' value='submit' name='saveDeck'>Save Deck</button>
-					<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
-				</form>
-			</div>
-			
 		</div>
 	</div>
 	
