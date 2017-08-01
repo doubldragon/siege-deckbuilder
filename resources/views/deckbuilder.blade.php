@@ -77,17 +77,6 @@
 					</tr>
 
 				</table>
-
-
-				<!-- <div class='card card-block bg-faded'>
-					<h3 class="card-header">Available cards</h3>
-						<hr>
-							<div class="cardBar" ng-repeat="card in cards">NG card: [[card.name]] [[ card.isMonarch ]]</div>
-
-						
-
-					
-				</div> -->
 			</div>
 		</div>
 		<div class='row'>
@@ -100,10 +89,11 @@
 			
 		</div>
 	</div>
-
+	
 	<script>
 	function Controller($scope,$location) {
-		$scope.cards = {!! $cards !!};
+		$scope.cards = setupCards({!! $cards !!});
 	}
 	</script>
+	<script src="/deckbuilder.js"></script>
 @endsection

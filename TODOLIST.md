@@ -30,7 +30,7 @@
  	- Decks_Cards
  		- deck_id
  		- card_id
- 		- card_qty
+ 		- quantity
 
  - Create migrations and controllers
  - Seed database
