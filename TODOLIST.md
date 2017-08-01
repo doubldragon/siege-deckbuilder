@@ -2,10 +2,10 @@
 #TODO LIST
 
 # Database
- - Verify Setup of User/Admin logins - DONE
- - Design Schema for Tables
- 	- Users
- 		- standard fields with laravel auth
+- Verify Setup of User/Admin logins - DONE
+- Design Schema for Tables
+- Users
+- standard fields with laravel auth
  		- replace `Name` with `username` (unique)
  		- isAdmin (default is false)
  	- Decks

@@ -14,7 +14,9 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        $cards = \App\Card::all();
+
+        return view('deckbuilder', compact('cards'));
     }
 
     /**

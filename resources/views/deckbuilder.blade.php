@@ -3,13 +3,15 @@
 
 @section('content')
 
-	<div class='container text-center'>
+	<div class='container text-center' ng-app="app" ng-controller="Controller">
 		<h1>Siege! Deckbuilder</h1>
 
 		<p>Create New Deck</p>
 		<form class='form-inline' >
 			<div class='form-group' style='margin: 0 auto;'>	
 				<input type="text" name="deckName" placeholder="Name Your Deck">
+		    
+			<!-- Use a Toggle switch to select Faction -->
 		    <select class="form-control" id="factionSelect" name="factionSelect">
 		      <option name='faction' value=''>Select Faction</option>
 		      <option name='faction' value='Monarch'>Monarch</option>
@@ -53,6 +55,11 @@
 			<div class='col' id='availableCards'>
 				<div class='card card-block bg-faded'>
 					<h3>Available cards</h3>
+						@foreach ($cards as $card)
+							<div class="cardBar">card name: {{ $card->name }} {{$card->isMonarch}}</div>
+
+						@endforeach
+
 					<hr>
 				</div>
 			</div>

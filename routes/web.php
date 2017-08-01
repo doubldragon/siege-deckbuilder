@@ -19,6 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/deckbuilder', function () {
-	return view('deckbuilder');
-});
+Route::get('/deckbuilder', 'CardController@index');
+

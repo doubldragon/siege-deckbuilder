@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->boolean('isAdmin')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
