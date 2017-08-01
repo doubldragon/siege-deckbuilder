@@ -27,6 +27,10 @@
  		- side effects
  		- flavor text
  		- timestamps
+ 	- Decks_Cards
+ 		- deck_id
+ 		- card_id
+ 		- card_qty
 
  - Create migrations and controllers
  - Seed database

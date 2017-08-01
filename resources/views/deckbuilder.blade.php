@@ -53,15 +53,41 @@
 				</div>
 			</div>
 			<div class='col' id='availableCards'>
-				<div class='card card-block bg-faded'>
-					<h3>Available cards</h3>
-						@foreach ($cards as $card)
-							<div class="cardBar">card name: {{ $card->name }} {{$card->isMonarch}}</div>
+				<h3>Available Cards</h3>
+				<table class="table table-hover">
+					<tr>
+						<th class>Qty</th>
+						<th>Name</th>
+						<th>Deck Points</th>
+						<th>Action</th>
+					</tr>
+					<tr ng-repeat="card in cards">
+						<td>
+							0-3
+						</td>
+						<td>
+							[[card.name]]
+						</td>
+						<td>
+							[[card.deck_points]]
+						</td>
+						<td>
+							[[card.action]]
+						</td>
+					</tr>
 
-						@endforeach
+				</table>
 
-					<hr>
-				</div>
+
+				<!-- <div class='card card-block bg-faded'>
+					<h3 class="card-header">Available cards</h3>
+						<hr>
+							<div class="cardBar" ng-repeat="card in cards">NG card: [[card.name]] [[ card.isMonarch ]]</div>
+
+						
+
+					
+				</div> -->
 			</div>
 		</div>
 		<div class='row'>
@@ -74,4 +100,10 @@
 			
 		</div>
 	</div>
+
+	<script>
+	function Controller($scope,$location) {
+		$scope.cards = {!! $cards !!};
+	}
+	</script>
 @endsection
