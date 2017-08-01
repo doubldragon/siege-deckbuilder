@@ -22,3 +22,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Card::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        
+        'isMonarch' => $faker->boolean,
+        'name' => $faker->name,
+        'deck_points' => rand(1,5),
+        'type_id' => rand(1,7),
+        'cost' => rand(1,8),
+        'action' => $faker->word,
+        'effect' => $faker->word,
+        'flavor_text' => $faker->word,
+    ];
+
+});
+
