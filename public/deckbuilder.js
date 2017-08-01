@@ -1,11 +1,11 @@
-let deck_total = 0;
 
-function setupCards(cards){
-	console.log(cards);
-	cards.forEach(function (card){
-		card.quantity = 0;
-		console.log(card);
-	});
-	return cards;
+function Controller($scope,$location) {
+
+	$scope.cards = deck.cardlist;
 	
+	$scope.isMonarch = true;
+
+	$scope.toggleFaction = function () {
+		$scope.isMonarch = !$scope.isMonarch;
+	}	
 	}

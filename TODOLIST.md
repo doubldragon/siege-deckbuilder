@@ -2,8 +2,8 @@
 #TODO LIST
 
 # Database
-- Verify Setup of User/Admin logins - DONE
-- Design Schema for Tables
+<!-- - Verify Setup of User/Admin logins - DONE -->
+<!-- - Design Schema for Tables -->
 - Users
 - standard fields with laravel auth
  		- replace `Name` with `username` (unique)

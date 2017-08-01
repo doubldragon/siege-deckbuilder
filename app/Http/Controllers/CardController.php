@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use Illuminate\Http\Request;
+use JavaScript;
 
 class CardController extends Controller
 {
@@ -15,6 +16,12 @@ class CardController extends Controller
     public function index()
     {
         $cards = \App\Card::all();
+        foreach($cards as $card){
+            $card['quantity'] = 0;
+        }
+        JavaScript::put([
+            'cardlist' => $cards
+            ]);
 
         return view('deckbuilder', compact('cards'));
     }

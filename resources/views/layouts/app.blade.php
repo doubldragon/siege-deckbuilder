@@ -80,6 +80,7 @@
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="/deckbuilder.js"></script>
     <script>
         angular
             .module('app', [], function($interpolateProvider){
@@ -88,6 +89,8 @@
             })
             .controller('Controller', Controller);
     </script>
+    
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

@@ -9,15 +9,21 @@
 		<p>Create New Deck</p>
 		<form class='form-inline' >
 			<div class='form-group' style='margin: 0 auto;'>	
-				<input type="text" name="deckName" placeholder="Name Your Deck">
+				
 		    
-			<!-- Use a Toggle switch to select Faction -->
-		    <select class="form-control" id="factionSelect" name="factionSelect">
-		      <option name='faction' value=''>Select Faction</option>
-		      <option name='faction' value='Monarch'>Monarch</option>
-		      <option name='faction' value='Invader'>Invader</option>
-		    </select>
-				<button class='btn btn-primary' value='submit' name='createDeck'>Create Deck</button>
+		    <div class="btn-group" data-toggle="buttons">
+			  <label class="btn btn-primary">
+			    <input type="radio" name="options" id="option1" autocomplete="off" ng-click="toggleFaction()">Monarch
+			  </label>
+			  <label class="btn btn-primary">
+			    <input type="radio" name="options" id="option2" autocomplete="off" ng-click="toggleFaction()">Invader
+			  </label>
+			  
+			</div>
+			<p ng-show="[[isMonarch]]">Monarch Selected [[isMonarch]]</p>
+			<p ng-hide="[[isMonarch]]">Invader Selected</p>
+			
+			
 			</div>
 		
 		</form>
@@ -61,7 +67,7 @@
 						<th>Deck Points</th>
 						<th>Action</th>
 					</tr>
-					<tr ng-repeat="card in cards">
+					<tr ng-repeat="card in cards ">
 						<td>
 							0-3
 						</td>
@@ -82,6 +88,7 @@
 		<div class='row'>
 			<div class='col'>
 				<form>
+					<input type="text" name="deckName" placeholder="Name Your Deck">
 					<button class='btn btn-primary' value='submit' name='saveDeck'>Save Deck</button>
 					<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
 				</form>
@@ -90,10 +97,7 @@
 		</div>
 	</div>
 	
-	<script>
-	function Controller($scope,$location) {
-		$scope.cards = setupCards({!! $cards !!});
-	}
-	</script>
-	<script src="/deckbuilder.js"></script>
+	
+	<!-- <script src="/deckbuilder.js"></script> -->
+	<!-- <script>cards = setupCards(deck.cardlist);</script> -->
 @endsection
