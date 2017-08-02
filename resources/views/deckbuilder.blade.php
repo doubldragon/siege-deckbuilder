@@ -45,11 +45,46 @@
 			<h2>Card Selector</h2>
 			<div class='row'>
 				<div class='col' id='myDeck'>
-					<div class='card card-block bg-faded'>
-						<h3 class="card-header">My Deck</h3>
-						<hr>
-						<h4>Spaces remaining</h4>
-					</div>
+						<h3>My Deck</h3>
+						<table class="table table-hover">
+						<tr>
+							<th class>Qty</th>
+							<th>Name</th>
+							<th>Deck Points</th>
+							<th>Action</th>
+						</tr>
+						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
+						<!-- MAKE A FUNCTION! -->
+							<td>
+								<form class="btn-group" >
+								  <label class="btn btn-sm btn-info">
+								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
+								  </label>
+								  <label class="btn btn-sm btn-info">
+								    <input type="radio" id="option2" value="1" ng-model="card.quantity" ng-change="updateQty(1,card)">1
+								  </label>
+								  <label class="btn btn-sm btn-info">
+								    <input type="radio" id="option3" value="2" ng-model="card.quantity" ng-change="updateQty(2,card)">2
+								  </label>
+								  <label class="btn btn-sm btn-info">
+								    <input type="radio" id="option4" value="3" ng-model="card.quantity" ng-change="updateQty(3,card)">3
+								  </label>
+								</form>
+								
+								
+							</td>
+							<td>
+								[[card.name]]
+							</td>
+							<td>
+								[[card.deck_points]]
+							</td>
+							<td>
+								[[card.action]]
+							</td>
+						</tr>
+
+					</table>
 				</div>
 				<div class='col' id='availableCards'>
 					<h3>Available Cards</h3>
@@ -60,21 +95,21 @@
 							<th>Deck Points</th>
 							<th>Action</th>
 						</tr>
-						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true}">
-						<!-- MAKE A FUNCTION! -->
+						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} ">
+						<!-- | filter: {selected: false} -->
 							<td>
 								<form class="btn-group" >
-								  <label class="btn btn-sm btn-info ">
-								    <input type="radio" id="option1" value="0" ng-model="value" ng-change="updateQty(value)">0
+								  <label class="btn btn-sm btn-info active">
+								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option2" value="1" ng-model="value" ng-change="updateQty(value)">1
+								    <input type="radio" id="option2" value="1" ng-model="card.quantity" ng-change="updateQty(1,card)">1
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option3" value="2" ng-model="value" ng-change="updateQty(value)">2
+								    <input type="radio" id="option3" value="2" ng-model="card.quantity" ng-change="updateQty(2,card)">2
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option4" value="3" ng-model="value" ng-change="updateQty(value)">3
+								    <input type="radio" id="option4" value="3" ng-model="card.quantity" ng-change="updateQty(3,card)">3
 								  </label>
 								</form>
 								

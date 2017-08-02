@@ -18,6 +18,7 @@ class CardController extends Controller
         $cards = \App\Card::all();
         foreach($cards as $card){
             $card['quantity'] = 0;
+            $card['selected'] = false;
             if ($card['type_id'] > 2){
                 $card['display'] = true;
             } else {
