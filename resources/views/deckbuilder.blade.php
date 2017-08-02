@@ -26,10 +26,10 @@
 				<button ng-repeat='card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}' >[[card.name]]</button>
 			</div> -->
 			<hr>
-			<button ng-click="selected=true;" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
+			<button class="btn btn-success" ng-click="selectLead=true" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
 			
 			</div>
-			<p ng-show="selected">Ta Daaaa!</p>
+			<p ng-show="selectLead">Ta Daaaa!</p>
 		</form>
 		<br />
 		<p>or Select Existing Deck to Edit</p>
@@ -53,7 +53,7 @@
 		<div class="alert alert-success" role="alert">
 		  <strong>Well done!</strong> Messaging will go here.
 		</div> 
-		<div ng-show="selected">
+		<div >
 			<h2>Card Selector</h2>
 			<div class='row'>
 				<div class='col' id='myDeck'>
@@ -72,9 +72,10 @@
 							<th>Deck Points</th>
 							<th>Action</th>
 						</tr>
-						<tr ng-repeat="card in cards ">
+						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true}">
+						<!-- MAKE A FUNCTION! -->
 							<td>
-								0-3
+								[[card.type_id]]
 							</td>
 							<td>
 								[[card.name]]

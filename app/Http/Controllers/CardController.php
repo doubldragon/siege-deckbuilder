@@ -18,6 +18,11 @@ class CardController extends Controller
         $cards = \App\Card::all();
         foreach($cards as $card){
             $card['quantity'] = 0;
+            if ($card['type_id'] > 2){
+                $card['display'] = true;
+            } else {
+                $card['display'] = false;
+            };
         }
         JavaScript::put([
             'cardlist' => $cards
