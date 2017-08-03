@@ -5,7 +5,7 @@
 
 	<div class='container text-center' ng-app="app" ng-controller="Controller">
 		<h1>Siege! Deckbuilder</h1>
-
+		<div ng-hide="selectLead">
 		<p>Create New Deck</p>
 		<form class='form-inline' >
 			<div class='form-group' style='margin: 0 auto;'>	
@@ -13,10 +13,10 @@
 			<button ng-click="isMonarch=true;">Monarch</button>
 			<button ng-click="isMonarch=false;">Invader</button>
 			<hr>
-			<button class="btn btn-success" ng-click="selectLead=true;" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
+			<button class="btn btn-success" ng-click="revealCards(card)" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
 			
 			</div>
-			<p ng-show="selectLead">Ta Daaaa!</p>
+			<!-- <p ng-show="selectLead">Ta Daaaa!</p> -->
 		</form>
 		<br />
 		<p>or Select Existing Deck to Edit</p>
@@ -41,11 +41,16 @@
 		  <strong>Well done!</strong> Messaging will go here. 
 		</div> 
 		<button class='btn btn-primary' value='4' ng-click="updateQty(value)">Select function</button>
-		<div >
+		</div>
+		
+
+		<div ng-show="selectLead">
 			<h2>Card Selector</h2>
 			<div class='row'>
 				<div class='col' id='myDeck'>
 						<h3>My Deck</h3>
+						<h4> Leader: [[leader.name]] </h4>
+						<h4> Effect: [[leader.effect]] </h4>
 						<table class="table table-hover">
 						<tr>
 							<th class>Qty</th>
@@ -54,7 +59,6 @@
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
-						<!-- MAKE A FUNCTION! -->
 							<td>
 								<form class="btn-group" >
 								  <label class="btn btn-sm btn-info">
@@ -135,6 +139,8 @@
 						<input type="text" name="deckName" placeholder="Name Your Deck">
 						<button class='btn btn-primary' value='submit' name='saveDeck'>Save Deck</button>
 						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
+						<button class='btn btn-primary' ng-click="stringifyDeck(cards)">Stringify</button>
+						
 					</form>
 				</div>
 				

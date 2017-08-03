@@ -4,7 +4,9 @@ function Controller($scope) {
 	$scope.cards = deck.cardlist;
 	$scope.selectLead = false;
 	$scope.isMonarch = true;
-	console.log($scope);
+	$scope.stringDeck = "Ready to stringify deck!";
+	$scope.jsonDeck= "This will become json";
+	
 	$scope.toggleFaction = function (isMonarch) {
 		console.log('hello');
 		$scope.isMonarch = isMonarch;
@@ -13,22 +15,24 @@ function Controller($scope) {
 
 	$scope.updateQty = function (value, card) {
 		card.quantity = value;
-		console.log(value);
-		console.log("card quantity = ", card.quantity);
 		if (card.quantity == 0){
 			card.selected = false;
-			console.log(card.name, "is zero!");
 		} else {
 			card.selected = true;
-			console.log(card.name, "is selected!");
 		}
 		
 		return card;
+	};
+
+	$scope.revealCards = function(card) {
+		$scope.selectLead = true;
+		$scope.leader = card;
 	}
 
-	$scope.checkQty = function(card) {
-
+	$scope.stringifyDeck = function(deck) {
+		$scope.stringDeck = JSON.stringify(deck);
+		$scope.jsonDeck = JSON.parse($scope.stringDeck);
+		console.log($scope.jsonDeck);
 	}
-
 	
 }
