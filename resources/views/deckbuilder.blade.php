@@ -24,15 +24,14 @@
 		<form class='form-inline'>
 			<div class="form-group" style='margin: 0 auto;'>
 		    <select class="form-control" id="factionSelect" name="factionSelect">
-		      <option name='faction' value=''>Select Faction</option>
-		      <option name='faction' value='Monarch'>Monarch</option>
-		      <option name='faction' value='Invader'>Invader</option>
+		      <option name='deckSelect' value=''>Select Faction</option>
+		      <option name='deckSelect' value=''>[[decks.name]]</option>
+		      
 		    </select>
 		
 		    <select class="form-control" id="factionSelect" name="factionSelect">
 		      <option name='faction' value=''>Choose Deck</option>
-		      <option name='faction' value='sampleDeck'>Sample Deck Name</option>
-		      <option name='faction' value='anotherDeck'>Another Deck</option>
+		      <option name='deckSelect' value='[[deck.id]]' ng-repeat="deck in decks">[[deck.name]]</option>
 		    </select>
 				<button class='btn btn-primary' value='submit'>Select Deck</button>
 			</div>
@@ -135,12 +134,16 @@
 			</div>
 			<div class='row'>
 				<div class='col'>
-					<form>
-						<input type="text" name="deckName" placeholder="Name Your Deck">
+					<form method='post' action="/api/decks">
+						{{ method_field('POST')}}
+						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
+						<input type="hidden" name="cards" value="[[deckAsString(cards)]]">
+						<input type="text" name="name" placeholder="Name Your Deck">
+
 						<button class='btn btn-primary' value='submit' name='saveDeck'>Save Deck</button>
 						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
 						<button class='btn btn-primary' ng-click="stringifyDeck(cards)">Stringify</button>
-						
+
 					</form>
 				</div>
 				

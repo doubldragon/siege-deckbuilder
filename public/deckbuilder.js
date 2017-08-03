@@ -2,6 +2,8 @@
 function Controller($scope) {
 
 	$scope.cards = deck.cardlist;
+	$scope.decks = deck.decks;
+	console.log(deck.decks);
 	$scope.selectLead = false;
 	$scope.isMonarch = true;
 	$scope.stringDeck = "Ready to stringify deck!";
@@ -29,10 +31,12 @@ function Controller($scope) {
 		$scope.leader = card;
 	}
 
-	$scope.stringifyDeck = function(deck) {
-		$scope.stringDeck = JSON.stringify(deck);
-		$scope.jsonDeck = JSON.parse($scope.stringDeck);
-		console.log($scope.jsonDeck);
+	$scope.deckAsString = function(deck) {
+		console.log(deck);
+		console.log(JSON.stringify(deck));
+		return JSON.stringify(deck);
+		// $scope.jsonDeck = JSON.parse($scope.stringDeck);
+		// console.log($scope.jsonDeck);
 	}
 	
 }

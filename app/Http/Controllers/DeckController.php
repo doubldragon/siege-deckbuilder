@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Deck;
 use Illuminate\Http\Request;
+use JavaScript;
 
 class DeckController extends Controller
 {
@@ -35,7 +36,25 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // dd(gettype($request->cards));
+        // $cards= $request->cards;
+        // $cards =  json_decode($cards);
+        // return $cards[0];
+        // return $cards->toJson();
+        $deck = new Deck;
+        $deck['cards'] = $request->cards;
+        $deck['user_id'] = $request->user_id;
+        $deck['name'] = $request->name;
+        $deck->save();
+        // $request->cards= json_encode($request->cards);
+        // $deck->fill($request->all())->save();
+        // dd($cards[0]);
+        JavaScript::put([
+            'cardlist' => $deck['cards']
+            ]);
+        
+        return view('deckbuilder');
     }
 
     /**
@@ -46,7 +65,8 @@ class DeckController extends Controller
      */
     public function show(Deck $deck)
     {
-        //
+        $decks = Deck::find(31);
+        dd(gettype($decks['cards']));
     }
 
     /**

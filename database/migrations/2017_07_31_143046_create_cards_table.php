@@ -28,11 +28,11 @@ class CreateCardsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('card_deck', function (Blueprint $table) {
-            $table->integer('deck_id');
-            $table->integer('card_id');
-            $table->integer('quantity');
-        });
+        // Schema::create('card_deck', function (Blueprint $table) {
+        //     $table->integer('deck_id');
+        //     $table->integer('card_id');
+        //     $table->integer('quantity');
+        // });
     }
 
     /**

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Card;
+use App\Deck;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use JavaScript;
 
@@ -15,6 +18,7 @@ class CardController extends Controller
      */
     public function index()
     {
+        $user = Auth::id();
         $cards = \App\Card::all();
         foreach($cards as $card){
             $card['quantity'] = 0;
@@ -25,8 +29,10 @@ class CardController extends Controller
                 $card['display'] = false;
             };
         }
+        $decks = \App\Deck::where('user_id', $user)->get();
         JavaScript::put([
-            'cardlist' => $cards
+            'cardlist' => $cards,
+            'decks' => $decks
             ]);
 
         return view('deckbuilder', compact('cards'));
