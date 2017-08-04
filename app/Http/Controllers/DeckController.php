@@ -46,7 +46,7 @@ class DeckController extends Controller
         $deck['cards'] = $request->cards;
         $deck['user_id'] = $request->user_id;
         $deck['name'] = $request->name;
-        
+        // return $deck['cards'];
         $deck->save();
         dd($deck);
         // $request->cards= json_encode($request->cards);
