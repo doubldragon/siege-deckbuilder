@@ -134,12 +134,12 @@
 			</div>
 			<div class='row'>
 				<div class='col'>
-					<form method='post' > 
-						<!-- {{ method_field('POST')}} -->
+					<form method='post' action="/api/decks"> 
+						{{ method_field('POST')}}
 						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
-						<!-- <input type="hidden" name="cards" value="[[deckAsString(cards)]]"> -->
-						<input type="text" name="tempName" ng-model="deckName" placeholder="Name Your Deck">
-						<button class='btn btn-primary' ng-click="saveDeck({{Auth::User()->id}}, deckName, cards)" name='saveDeck'>Save Deck</button>
+						<input type="hidden" name="userDeck" value="[[cards]]">
+						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
+						<button class='btn btn-primary' value="submit"  name='saveDeck'>Save Deck</button>
 						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
 						<button class='btn btn-primary' ng-click="stringifyDeck(cards)">Stringify</button>
 					</form>
@@ -148,8 +148,8 @@
 			</div>
 		</div>
 	</div>
+	<!-- ng-click="saveDeck({{Auth::User()->id}}, deckName, cards)" -->
 	
 	
-	<!-- <script src="/deckbuilder.js"></script> -->
-	<!-- <script>cards = setupCards(deck.cardlist);</script> -->
+
 @endsection

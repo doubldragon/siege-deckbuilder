@@ -36,27 +36,23 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         // dd(gettype($request->user_id));
-        // dd($request->cards);
-        // $cards= $request->cards;
-        // $cards =  json_decode($cards);
-        // return $cards[0];
-        // return $cards->toJson();
-        $deck = new Deck;
-        $deck['cards'] = $request->cards;
-        $deck['user_id'] = $request->user_id;
-        $deck['name'] = $request->name;
-        // return $deck['cards'];
-        $deck->save();
-        dd($deck);
-        // $request->cards= json_encode($request->cards);
-        // $deck->fill($request->all())->save();
-        // dd($cards[0]);
-        JavaScript::put([
-            'cardlist' => $deck['cards']
+        $data = $request->all();
+        $cards= json_decode($request->userDeck);
+        $user_id = array($request->user_id);
+        $name = array($request->name);
+        $deck = Deck::create([
+                'user_id' => $data['user_id'],
+                'name' => $data['name'],
+                'cards' => $data['userDeck'],
             ]);
+        
+        // JavaScript::put([
+        //     'cardlist' => $deck['cards']
+        //     ]);
 
-        return view('deckbuilder');
+        return redirect('/home');
     }
 
     /**
