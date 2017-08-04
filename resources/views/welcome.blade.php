@@ -13,8 +13,10 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-image: url('img/castle.jpg'); 
                 color: #636b6f;
+                background-size: cover;
+                background-repeat: no-repeat;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;

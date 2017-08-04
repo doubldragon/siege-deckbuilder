@@ -3,7 +3,6 @@ function Controller($scope) {
 
 	$scope.cards = deck.cardlist;
 	$scope.decks = deck.decks;
-	console.log(deck.decks);
 	$scope.selectLead = false;
 	$scope.isMonarch = true;
 	$scope.stringDeck = "Ready to stringify deck!";
@@ -33,10 +32,20 @@ function Controller($scope) {
 
 	$scope.deckAsString = function(deck) {
 		console.log(deck);
-		console.log(JSON.stringify(deck));
-		return JSON.stringify(deck);
-		// $scope.jsonDeck = JSON.parse($scope.stringDeck);
-		// console.log($scope.jsonDeck);
+
+		// console.log(JSON.stringify(deck).slice(1,-1));
+		return JSON.parse(JSON.stringify(deck).slice(1,-1));
+	}
+
+	$scope.saveDeck = function (id, name, cards) {
+		console.log("saving deck");
+		$scope.deck = {
+			user_id : id,
+			name: name,
+			cards: cards
+		};
+		console.log($scope.deck);
+		$http.post('/api/decks', $scope.deck);
 	}
 	
 }

@@ -36,8 +36,8 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // dd(gettype($request->cards));
+        // dd($request->cards);
+        // dd(json_encode($request->cards));
         // $cards= $request->cards;
         // $cards =  json_decode($cards);
         // return $cards[0];
@@ -53,7 +53,7 @@ class DeckController extends Controller
         JavaScript::put([
             'cardlist' => $deck['cards']
             ]);
-        
+
         return view('deckbuilder');
     }
 
