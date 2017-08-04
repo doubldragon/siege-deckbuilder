@@ -1,6 +1,6 @@
 
 function Controller($scope, $http) {
-
+	console.log("In deckbuilder.js");
 	$scope.cards = deck.cardlist;
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
@@ -38,6 +38,17 @@ function Controller($scope, $http) {
 		return JSON.parse(JSON.stringify(deck).slice(1,-1));
 	}
 
+	$scope.openDeck = function (){
+		$scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
+		
+		console.log($scope.deckSelect);
+		// return;
+		$scope.cards = JSON.parse($scope.deckSelect.cards);
+		console.log($scope.cards);
+
+		$scope.selectLead = true;
+		$scope.deckName = $scope.deckSelect.name;
+	}
 	$scope.saveDeck = function (id, name, cards) {
 		console.log("saving deck");
 		$scope.deck = {

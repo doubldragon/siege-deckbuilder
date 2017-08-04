@@ -23,17 +23,12 @@
 		<br />
 		<form class='form-inline'>
 			<div class="form-group" style='margin: 0 auto;'>
-		    <select class="form-control" id="factionSelect" name="factionSelect">
-		      <option name='deckSelect' value=''>Select Faction</option>
-		      <option name='deckSelect' value=''>[[decks.name]]</option>
-		      
+		    	
+		    <select class="form-control" id="deckSelect" name="deckSelect">
+		      <option name='' value=''>Choose Deck</option>
+		      <option name='deckSelect' ng-repeat="deck in decks" value="[[deck]]">[[deck.name]]</option>
 		    </select>
-		
-		    <select class="form-control" id="factionSelect" name="factionSelect">
-		      <option name='faction' value=''>Choose Deck</option>
-		      <option name='deckSelect' value='[[deck.id]]' ng-repeat="deck in decks">[[deck.name]]</option>
-		    </select>
-				<button class='btn btn-primary' value='submit'>Select Deck</button>
+				<button class='btn btn-primary' type="submit" ng-click='openDeck()'>Select Deck</button>
 			</div>
 		</form>
 		<div class="alert alert-success" role="alert">
@@ -141,7 +136,6 @@
 						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
 						<button class='btn btn-primary' value="submit"  name='saveDeck'>Save Deck</button>
 						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
-						<button class='btn btn-primary' ng-click="stringifyDeck(cards)">Stringify</button>
 					</form>
 				</div>
 				

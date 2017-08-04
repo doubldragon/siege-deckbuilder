@@ -9,6 +9,18 @@ use JavaScript;
 class DeckController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }    
+
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -39,18 +51,18 @@ class DeckController extends Controller
         // dd($request);
         // dd(gettype($request->user_id));
         $data = $request->all();
-        $cards= json_decode($request->userDeck);
+        /*$cards= json_decode($request->userDeck);
         $user_id = array($request->user_id);
-        $name = array($request->name);
+        $name = array($request->name);*/
         $deck = Deck::create([
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
                 'cards' => $data['userDeck'],
             ]);
         
-        // JavaScript::put([
-        //     'cardlist' => $deck['cards']
-        //     ]);
+        JavaScript::put([
+            'cardlist' => $deck['cards']
+            ]);
 
         return redirect('/home');
     }

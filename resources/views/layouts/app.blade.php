@@ -49,7 +49,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} 
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -77,7 +77,7 @@
 
         @yield('content')
     </div>
-
+    @include('footer')
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="/deckbuilder.js"></script>
