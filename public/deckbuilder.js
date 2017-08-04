@@ -1,9 +1,10 @@
 
-function Controller($scope) {
+function Controller($scope, $http) {
 
 	$scope.cards = deck.cardlist;
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
+	$scope.deckName="";
 	$scope.isMonarch = true;
 	$scope.stringDeck = "Ready to stringify deck!";
 	$scope.jsonDeck= "This will become json";
@@ -41,7 +42,7 @@ function Controller($scope) {
 		console.log("saving deck");
 		$scope.deck = {
 			user_id : id,
-			name: name,
+			name: $scope.deckName,
 			cards: cards
 		};
 		console.log($scope.deck);

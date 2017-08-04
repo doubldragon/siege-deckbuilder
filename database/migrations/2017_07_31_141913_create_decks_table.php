@@ -18,7 +18,7 @@ class CreateDecksTable extends Migration
             $table->string('name');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->text('cards');
+            $table->json('cards');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -36,8 +36,8 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(gettype($request->user_id));
         // dd($request->cards);
-        // dd(json_encode($request->cards));
         // $cards= $request->cards;
         // $cards =  json_decode($cards);
         // return $cards[0];
@@ -46,7 +46,9 @@ class DeckController extends Controller
         $deck['cards'] = $request->cards;
         $deck['user_id'] = $request->user_id;
         $deck['name'] = $request->name;
+        
         $deck->save();
+        dd($deck);
         // $request->cards= json_encode($request->cards);
         // $deck->fill($request->all())->save();
         // dd($cards[0]);
