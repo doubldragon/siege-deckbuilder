@@ -26,15 +26,22 @@
                     <div class="row">
 
                         <div class="col">
-                            
-                            <ul>
+                            <table class="table-condensed">
+                                <tr ng-repeat="deck in decks" ng-click="previewDeck(deck)">
+                                    <td ng-click="showDeck(deck)"> 
+                                        <a href="#" ng-click="showDeck(deck)">[[deck.name]]</a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- <ul>
                                 <li ng-repeat="deck in decks" ng-click="previewDeck(deck)"><a href="#" ng-click="showDeck(deck)">[[deck.name]]</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <div class="col deckDisplay">
-                            [[preLeader]] - [[preFaction]]
+
+                            <h4 ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
                             <ul>
-                                <li ng-repeat="card in previewCards" ng-show="card.selected">[[card.quantity]]x [[card.name]]</li>
+                                <li ng-repeat="card in previewCards" ng-show="card.selected" >[[card.quantity]]x [[card.name]]</li>
                             </ul>
                         </div>
                     </div>

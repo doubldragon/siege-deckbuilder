@@ -52,7 +52,7 @@
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
-							<td>
+							<td class="selector">
 								<form class="btn-group" >
 								  <label class="btn btn-sm btn-info">
 								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
@@ -94,19 +94,19 @@
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} ">
 						<!-- | filter: {selected: false} -->
-							<td>
-								<form class="btn-group" >
+							<td class="selector">
+								<form class="btn-group" data-toggle="buttons">
 								  <label class="btn btn-sm btn-info active">
-								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
+								    <input type="radio" id="option1" value="0" data-ng-model="card.quantity" ng-change="updateQty(0,card)">0
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option2" value="1" ng-model="card.quantity" ng-change="updateQty(1,card)">1
+								    <input type="radio" id="option2" value="1" data-ng-model="card.quantity" ng-change="updateQty(1,card)">1
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option3" value="2" ng-model="card.quantity" ng-change="updateQty(2,card)">2
+								    <input type="radio" id="option3" value="2" data-ng-model="card.quantity" ng-change="updateQty(2,card)">2
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option4" value="3" ng-model="card.quantity" ng-change="updateQty(3,card)">3
+								    <input type="radio" id="option4" value="3" data-ng-model="card.quantity" ng-change="updateQty(3,card)">3
 								  </label>
 								</form>
 								

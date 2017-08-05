@@ -30,8 +30,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                       <!--  {{ config('app.name', 'Siege!') }} --> Siege!
+
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                       <!--  {{ config('app.name', 'Siege!') }} --> <img class="logo" style="display:inline-block" src="https://png.icons8.com/catapult/ios7/50" title="Catapult" width="40" height="40">Siege!
                     </a>
                 </div>
 

@@ -56,4 +56,8 @@ function Controller($scope, $http) {
 		$scope.preFaction = deck.faction;
 		$scope.previewCards = JSON.parse(deck.cards);
 	}	
+
+	$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
 }
