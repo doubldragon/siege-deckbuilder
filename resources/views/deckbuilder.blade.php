@@ -16,7 +16,6 @@
 			<button class="btn btn-success" ng-click="revealCards(card)" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
 			
 			</div>
-			<!-- <p ng-show="selectLead">Ta Daaaa!</p> -->
 		</form>
 		<br />
 		<p>or Select Existing Deck to Edit</p>
@@ -133,9 +132,14 @@
 						{{ method_field('POST')}}
 						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
 						<input type="hidden" name="userDeck" value="[[cards]]">
+						<input type="hidden" name="lead_id" value="[[leader.id]]">
+						<input type="hidden" name="isMonarch" value="[[leader.isMonarch]]">
+						<!-- <input type="checkbox" name="isPrivate" ng-model="isPrivate">Check to make this deck Private<br /> -->
 						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
+
+						
 						<button class='btn btn-primary' value="submit"  name='saveDeck'>Save Deck</button>
-						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
+						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
 				</div>
 				
