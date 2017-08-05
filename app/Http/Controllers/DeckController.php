@@ -48,16 +48,17 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         // dd(gettype($request->user_id));
         $data = $request->all();
-        /*$cards= json_decode($request->userDeck);
-        $user_id = array($request->user_id);
-        $name = array($request->name);*/
+
         $deck = Deck::create([
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
                 'cards' => $data['userDeck'],
+                // 'isPrivate' => $data['isPrivate'],
+                'lead_id' => $data['lead_id'],
+                'isMonarch' => $data['isMonarch'],
             ]);
         
         JavaScript::put([

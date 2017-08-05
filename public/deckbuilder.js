@@ -1,13 +1,13 @@
 
 function Controller($scope, $http) {
-	console.log("In deckbuilder.js");
 	$scope.cards = deck.cardlist;
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
 	$scope.deckName="";
+	$scope.isPrivate= false;
 	$scope.isMonarch = true;
-	$scope.stringDeck = "Ready to stringify deck!";
-	$scope.jsonDeck= "This will become json";
+	// $scope.stringDeck = "Ready to stringify deck!";
+	// $scope.jsonDeck= "This will become json";
 	
 	$scope.toggleFaction = function (isMonarch) {
 		console.log('hello');
@@ -29,6 +29,7 @@ function Controller($scope, $http) {
 	$scope.revealCards = function(card) {
 		$scope.selectLead = true;
 		$scope.leader = card;
+
 	}
 
 	$scope.deckAsString = function(deck) {
@@ -49,15 +50,18 @@ function Controller($scope, $http) {
 		$scope.selectLead = true;
 		$scope.deckName = $scope.deckSelect.name;
 	}
-	$scope.saveDeck = function (id, name, cards) {
-		console.log("saving deck");
-		$scope.deck = {
-			user_id : id,
-			name: $scope.deckName,
-			cards: cards
-		};
-		console.log($scope.deck);
-		$http.post('/api/decks', $scope.deck);
-	}
+	// $scope.saveDeck = function (id, name, cards) {
+	// 	console.log("saving deck");
+	// 	$scope.deck = {
+	// 		user_id : id,
+	// 		name: $scope.deckName,
+	// 		cards: cards,
+	// 		isPrivate: isPrivate,
+	// 		lead_id: $scope.leader.id,
+	// 		isMonarch: $scope.leader.isMonarch
+	// 	};
+	// 	console.log($scope.deck);
+	// 	$http.post('/api/decks', $scope.deck);
+	// }
 	
 }

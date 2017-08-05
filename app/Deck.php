@@ -10,7 +10,7 @@ class Deck extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'name', 'user_id','cards',
+        'name', 'user_id','cards', 'isPrivate', 'isMonarch', 'lead_id'
     ];
 
     public function cards()
