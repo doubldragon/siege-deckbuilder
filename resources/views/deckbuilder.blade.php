@@ -133,9 +133,12 @@
 						{{ method_field('POST')}}
 						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
 						<input type="hidden" name="userDeck" value="[[cards]]">
+						<input type="checkbox" name="isPrivate">Check to make this deck Private<br />
 						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
+
+						
 						<button class='btn btn-primary' value="submit"  name='saveDeck'>Save Deck</button>
-						<button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button>
+						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
 				</div>
 				

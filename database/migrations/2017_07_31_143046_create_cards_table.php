@@ -19,8 +19,8 @@ class CreateCardsTable extends Migration
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('card_types');
             $table->string('name')->unique();
-            $table->integer('deck_points');
-            $table->integer('cost');
+            $table->integer('deck_points')->nullable();
+            $table->integer('cost')->nullable();
             $table->string('action');
             $table->string('effect');
             $table->string('flavor_text');

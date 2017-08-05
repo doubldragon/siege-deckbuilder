@@ -15,6 +15,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-img">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -76,6 +77,7 @@
         </nav>
 
         @yield('content')
+    </div>
     </div>
     @include('footer')
     <!-- Scripts -->
