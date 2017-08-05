@@ -32,8 +32,10 @@
                             </ul>
                         </div>
                         <div class="col deckDisplay">
-                            Display Cards here
                             [[preLeader]]
+                            <ul>
+                                <li ng-repeat="card in previewCards" ng-show="card.selected">[[card.quantity]]x [[card.name]]</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

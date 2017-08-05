@@ -53,5 +53,6 @@ function Controller($scope, $http) {
 	
 	$scope.previewDeck = function (deck) {
 		$scope.preLeader = deck.name;
+		$scope.previewCards = JSON.parse(deck.cards);
 	}	
 }
