@@ -32,7 +32,7 @@
                             </ul>
                         </div>
                         <div class="col deckDisplay">
-                            [[preLeader]]
+                            [[preLeader]] - [[preFaction]]
                             <ul>
                                 <li ng-repeat="card in previewCards" ng-show="card.selected">[[card.quantity]]x [[card.name]]</li>
                             </ul>
