@@ -28,11 +28,12 @@
                         <div class="col">
                             
                             <ul>
-                                <li ng-repeat="deck in decks"><a href="#" ng-click="showDeck(deck)">[[deck.name]]</a></li>
+                                <li ng-repeat="deck in decks" ng-click="previewDeck(deck)"><a href="#" ng-click="showDeck(deck)">[[deck.name]]</a></li>
                             </ul>
                         </div>
                         <div class="col deckDisplay">
                             Display Cards here
+                            [[preLeader]]
                         </div>
                     </div>
                 </div>

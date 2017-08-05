@@ -29,7 +29,7 @@ class CardController extends Controller
     public function index()
     {
         $user = Auth::id();
-        $cards = \App\Card::all();
+        $cards = \App\Card::orderBy('type_id')->orderBy('name')->get();
         foreach($cards as $card){
             $card['quantity'] = 0;
             $card['selected'] = false;

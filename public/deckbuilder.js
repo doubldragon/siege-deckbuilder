@@ -50,18 +50,8 @@ function Controller($scope, $http) {
 		$scope.selectLead = true;
 		$scope.deckName = $scope.deckSelect.name;
 	}
-	// $scope.saveDeck = function (id, name, cards) {
-	// 	console.log("saving deck");
-	// 	$scope.deck = {
-	// 		user_id : id,
-	// 		name: $scope.deckName,
-	// 		cards: cards,
-	// 		isPrivate: isPrivate,
-	// 		lead_id: $scope.leader.id,
-	// 		isMonarch: $scope.leader.isMonarch
-	// 	};
-	// 	console.log($scope.deck);
-	// 	$http.post('/api/decks', $scope.deck);
-	// }
 	
+	$scope.previewDeck = function (deck) {
+		$scope.preLeader = deck.name;
+	}	
 }
