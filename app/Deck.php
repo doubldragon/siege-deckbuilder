@@ -10,7 +10,7 @@ class Deck extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'name', 'user_id',
+        'name', 'user_id','cards', 'isPrivate', 'isMonarch', 'lead_id'
     ];
 
     public function cards()
@@ -18,9 +18,9 @@ class Deck extends Model
         return $this->hasMany('App\Card');
     }
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User);
+        return $this->belongsTo('App\User');
     }
 
 }

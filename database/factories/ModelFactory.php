@@ -31,11 +31,11 @@ $factory->define(App\Card::class, function (Faker\Generator $faker) {
         'isMonarch' => $faker->boolean,
         'name' => $faker->name,
         'deck_points' => rand(1,5),
-        'type_id' => rand(1,7),
+        'type_id' => rand(3,7),
         'cost' => rand(1,8),
-        'action' => $faker->word,
-        'effect' => $faker->word,
-        'flavor_text' => $faker->word,
+        'action' => $faker->sentence,
+        'effect' => $faker->sentence,
+        'flavor_text' => $faker->sentence,
     ];
 
 });

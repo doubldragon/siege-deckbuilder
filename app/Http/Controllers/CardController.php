@@ -3,10 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Card;
+use App\Deck;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
+use JavaScript;
 
 class CardController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,24 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::id();
+        $cards = \App\Card::orderBy('type_id')->orderBy('name')->get();
+        foreach($cards as $card){
+            $card['quantity'] = 0;
+            $card['selected'] = false;
+            if ($card['type_id'] > 2){
+                $card['display'] = true;
+            } else {
+                $card['display'] = false;
+            };
+        }
+        $decks = \App\Deck::where('user_id', $user)->get();
+        JavaScript::put([
+            'cardlist' => $cards,
+            'decks' => $decks
+            ]);
+
+        return view('deckbuilder', compact('cards'));
     }
 
     /**

@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Deck;
 use Illuminate\Http\Request;
+use JavaScript;
 
 class DeckController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }    
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +48,25 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        // dd(gettype($request->user_id));
+        $data = $request->all();
+
+        $deck = Deck::create([
+                'user_id' => $data['user_id'],
+                'name' => $data['name'],
+                'cards' => $data['userDeck'],
+                // 'isPrivate' => $data['isPrivate'],
+                'lead_id' => $data['lead_id'],
+                'isMonarch' => $data['isMonarch'],
+            ]);
+        
+        JavaScript::put([
+            'cardlist' => $deck['cards']
+            // 'preLeader' => 
+            ]);
+
+        return redirect('/home');
     }
 
     /**
@@ -46,7 +77,8 @@ class DeckController extends Controller
      */
     public function show(Deck $deck)
     {
-        //
+        $decks = Deck::find(31);
+        dd(gettype($decks['cards']));
     }
 
     /**
