@@ -13,10 +13,10 @@ class DeckController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }    
 
 
 
@@ -48,7 +48,7 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         // dd(gettype($request->user_id));
         $data = $request->all();
 
@@ -63,6 +63,7 @@ class DeckController extends Controller
         
         JavaScript::put([
             'cardlist' => $deck['cards']
+            // 'preLeader' => 
             ]);
 
         return redirect('/home');
