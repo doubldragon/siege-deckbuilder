@@ -30,6 +30,10 @@
 				<button class='btn btn-primary' type="submit" ng-click='openDeck()'>Select Deck</button>
 			</div>
 		</form>
+<!-- 		<div class="alert alert-success" role="alert">
+		  <strong>Well done!</strong> Messaging will go here. 
+		</div>  -->
+		<button class='btn btn-primary' value='4' ng-click="updateQty(value)">Select function</button>
 		</div>
 		
 
