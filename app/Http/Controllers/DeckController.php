@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Card;
 use App\Deck;
 use Illuminate\Http\Request;
 use JavaScript;
@@ -63,7 +64,7 @@ class DeckController extends Controller
         
         JavaScript::put([
             'cardlist' => $deck['cards']
-            // 'preLeader' => 
+            
             ]);
 
         return redirect('/home');
@@ -77,8 +78,24 @@ class DeckController extends Controller
      */
     public function show(Deck $deck)
     {
-        $decks = Deck::find(31);
-        dd(gettype($decks['cards']));
+        $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
+        $deck['leader'] = $testLead[0];
+        $deck['isEdit'] = true;
+        // dd($deck['leader']['isMonarch']);
+        if ($deck['leader']['isMonarch']){
+            $deck['faction'] = "Monarch";
+        } else {
+            $deck['faction'] = "Invader";
+        }
+
+        JavaScript::put([
+            'cardlist' => $deck['cards'],
+            'editDeck' => $deck,
+            'isEdit' => true
+            ]);
+
+
+        return view('deckbuilder');
     }
 
     /**
@@ -112,6 +129,8 @@ class DeckController extends Controller
      */
     public function destroy(Deck $deck)
     {
-        //
+        $toDelete = Deck::find($deck->id);
+        $toDelete->delete();
+        return redirect('/home');
     }
 }

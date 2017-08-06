@@ -30,15 +30,11 @@
 				<button class='btn btn-primary' type="submit" ng-click='openDeck()'>Select Deck</button>
 			</div>
 		</form>
-		<div class="alert alert-success" role="alert">
-		  <strong>Well done!</strong> Messaging will go here. 
-		</div> 
-		<button class='btn btn-primary' value='4' ng-click="updateQty(value)">Select function</button>
 		</div>
 		
 
 		<div ng-show="selectLead">
-			<h2>Card Selector</h2>
+			
 			<div class='row'>
 				<div class='col' id='myDeck'>
 						<h3>My Deck</h3>
@@ -48,11 +44,11 @@
 						<tr>
 							<th class>Qty</th>
 							<th>Name</th>
-							<th>Deck Points</th>
+							<th>Points</th>
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
-							<td>
+							<td class="selector">
 								<form class="btn-group" >
 								  <label class="btn btn-sm btn-info">
 								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
@@ -89,24 +85,24 @@
 						<tr>
 							<th class>Qty</th>
 							<th>Name</th>
-							<th>Deck Points</th>
+							<th>Points</th>
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} ">
 						<!-- | filter: {selected: false} -->
-							<td>
+							<td class="selector">
 								<form class="btn-group" >
 								  <label class="btn btn-sm btn-info active">
-								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
+								    <input type="radio" id="option1" value="0" data-ng-model="card.quantity" ng-change="updateQty(0,card)">0
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option2" value="1" ng-model="card.quantity" ng-change="updateQty(1,card)">1
+								    <input type="radio" id="option2" value="1" data-ng-model="card.quantity" ng-change="updateQty(1,card)">1
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option3" value="2" ng-model="card.quantity" ng-change="updateQty(2,card)">2
+								    <input type="radio" id="option3" value="2" data-ng-model="card.quantity" ng-change="updateQty(2,card)">2
 								  </label>
 								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option4" value="3" ng-model="card.quantity" ng-change="updateQty(3,card)">3
+								    <input type="radio" id="option4" value="3" data-ng-model="card.quantity" ng-change="updateQty(3,card)">3
 								  </label>
 								</form>
 								

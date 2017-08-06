@@ -42,7 +42,8 @@ class CardController extends Controller
         $decks = \App\Deck::where('user_id', $user)->get();
         JavaScript::put([
             'cardlist' => $cards,
-            'decks' => $decks
+            'decks' => $decks,
+            // 'isEdit' => false
             ]);
 
         return view('deckbuilder', compact('cards'));

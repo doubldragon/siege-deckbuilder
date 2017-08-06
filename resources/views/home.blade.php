@@ -26,45 +26,36 @@
                     <div class="row">
 
                         <div class="col">
-                            
-                            <ul>
-                                <li ng-repeat="deck in decks" ng-click="previewDeck(deck)"><a href="#" ng-click="showDeck(deck)">[[deck.name]]</a></li>
-                            </ul>
+                            <table class="table-condensed">
+                                <tr ng-repeat="deck in decks" ng-click="previewDeck(deck)">
+                                    <td > 
+                                        <a href="#" ng-click="previewDeck(deck)">[[deck.name]]</a>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="col deckDisplay">
-                            Display Cards here
-                            [[preLeader]]
+                            <div ng-show="preLeader" class="mb-4">
+                                <span class="pull-right">
+                                <form class="form-inline" method="post" action="[[editAction]]">
+                                    {{method_field('GET')}}
+                                    <button class='btn btn-sm btn-outline-primary ' type="submit" >Edit</button>
+                                </form>
+                                <form class="form-inline" method="post" action="[[editAction]]">
+                                    {{method_field('DELETE')}}
+                                    <button class='btn btn-sm btn-outline-danger ' type="submit" >Delete</button>
+                                </form>
+                                </span>
+                            </div>
+                            <h4 ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
+                            <ul>
+                                <li ng-repeat="card in previewCards" ng-show="card.selected" >[[card.quantity]]x [[card.name]]</li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>
             </div>      
-            <!-- <div id="accordion" role="tablist" aria-multiselectable="false">
-                <div class="card" >
-                    <div class="card-header" role="tab" id="heading" >
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse[[deck.id]]" aria-expanded="true" aria-controls="collapseheading"> instructions </a>
-                        </h5>
-                    </div>
-                    <div id="collapseheading" class="collapse show" role="tabpanel" aria-labeledby="heading">
-                        <div class="card-block">
-                            Card list goes here
-                        </div>
-                    </div>
-                </div>
-                <div class="card" ng-repeat="deck in decks">
-                    <div class="card-header" role="tab" id="heading[[deck.id]]">
-                        <h5 class="mb-0">
-                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse[[deck.id]]" aria-expanded="false" aria-controls="collapse[[deck.id]]"> [[deck.name]] </a>
-                        </h5>
-                    </div>
-                    <div id="collapse[[deck.name]]" class="collapse show" role="tabpanel" aria-labeledby="heading[[deck.id]]">
-                        <div class="card-block">
-                            [[deck.name]]
-                        </div>
-                    </div>
-                </div>
-
-            </div> -->
         </div>
     </div>
 

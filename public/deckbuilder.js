@@ -1,14 +1,26 @@
 
 function Controller($scope, $http) {
 	$scope.cards = deck.cardlist;
+	
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
 	$scope.deckName="";
 	$scope.isPrivate= false;
 	$scope.isMonarch = true;
-	// $scope.stringDeck = "Ready to stringify deck!";
-	// $scope.jsonDeck= "This will become json";
-	
+	console.log(deck);
+	if (deck.isEdit){
+		
+		// $scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
+		
+		console.log(deck.cards);
+		// return;
+		$scope.cards = JSON.parse(deck.cards);
+		console.log($scope.cards);
+
+		$scope.selectLead = true;
+		$scope.deckName = $scope.deckSelect.name;
+	}
+
 	$scope.toggleFaction = function (isMonarch) {
 		console.log('hello');
 		$scope.isMonarch = isMonarch;
@@ -52,6 +64,14 @@ function Controller($scope, $http) {
 	}
 	
 	$scope.previewDeck = function (deck) {
-		$scope.preLeader = deck.name;
+		$scope.preLeader = deck.leader.name;
+		$scope.preFaction = deck.faction;
+		$scope.previewCards = JSON.parse(deck.cards);
+		$scope.editAction = "/api/decks/" + deck.id;
+		$scope.activeDeck = deck.id;
 	}	
+
+	$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
 }
