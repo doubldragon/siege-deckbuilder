@@ -4,10 +4,20 @@ function Controller($scope, $http) {
 	
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
+
 	$scope.deckName="";
 	$scope.isPrivate= false;
 	$scope.isMonarch = true;
+<<<<<<< Updated upstream
 	console.log(deck);
+=======
+	$scope.isEdit = false;
+	$scope.deckName = "Untitled Deck";
+	$scope.searchText = "";
+	$scope.newExisting = false;
+	$scope.selectFaction = false;
+
+>>>>>>> Stashed changes
 	if (deck.isEdit){
 		
 		// $scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
