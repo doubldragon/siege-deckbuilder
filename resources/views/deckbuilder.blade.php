@@ -30,15 +30,15 @@
 				<button class='btn btn-primary' type="submit" ng-click='openDeck()'>Select Deck</button>
 			</div>
 		</form>
-		<div class="alert alert-success" role="alert">
+<!-- 		<div class="alert alert-success" role="alert">
 		  <strong>Well done!</strong> Messaging will go here. 
-		</div> 
+		</div>  -->
 		<button class='btn btn-primary' value='4' ng-click="updateQty(value)">Select function</button>
 		</div>
 		
 
 		<div ng-show="selectLead">
-			<h2>Card Selector</h2>
+			
 			<div class='row'>
 				<div class='col' id='myDeck'>
 						<h3>My Deck</h3>
@@ -48,7 +48,7 @@
 						<tr>
 							<th class>Qty</th>
 							<th>Name</th>
-							<th>Deck Points</th>
+							<th>Points</th>
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
@@ -89,13 +89,13 @@
 						<tr>
 							<th class>Qty</th>
 							<th>Name</th>
-							<th>Deck Points</th>
+							<th>Points</th>
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} ">
 						<!-- | filter: {selected: false} -->
 							<td class="selector">
-								<form class="btn-group" data-toggle="buttons">
+								<form class="btn-group" >
 								  <label class="btn btn-sm btn-info active">
 								    <input type="radio" id="option1" value="0" data-ng-model="card.quantity" ng-change="updateQty(0,card)">0
 								  </label>

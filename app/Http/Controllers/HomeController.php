@@ -41,11 +41,13 @@ class HomeController extends Controller
                 $deck['faction'] = "Invader";
             }
         }
-        // dd($decks);
+        
         JavaScript::put([
             // 'cardlist' => $cards,
-            'decks' => $decks
+            'decks' => $decks,
+            // 'isEdit' => false
             ]);
+        //dd($decks);
         return view('home', compact('decks'));
     }
 }
