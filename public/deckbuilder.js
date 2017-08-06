@@ -1,7 +1,6 @@
 
 function Controller($scope, $http) {
 	$scope.cards = deck.cardlist;
-	
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
 
@@ -9,6 +8,7 @@ function Controller($scope, $http) {
 	$scope.isPrivate= false;
 	$scope.isMonarch = true;
 	$scope.isEdit = false;
+
 	$scope.deckName = "Untitled Deck";
 	$scope.searchText = "";
 	$scope.newExisting = false;
@@ -23,8 +23,15 @@ function Controller($scope, $http) {
 		$scope.cards = JSON.parse(deck.cards);
 		console.log($scope.cards);
 
+
+	if (deck.isEdit){
+		$scope.cards = JSON.parse(deck.cardlist);
+		$scope.leader = deck.editDeck.leader;
 		$scope.selectLead = true;
-		$scope.deckName = $scope.deckSelect.name;
+		$scope.deck_id = deck.editDeck.id;
+		$scope.deckName = deck.editDeck.name;
+		$scope.isEdit = true;
+		$scope.editAction =  "../api/decks/" + $scope.deck_id;
 	}
 
 	$scope.toggleFaction = function (isMonarch) {
@@ -50,20 +57,14 @@ function Controller($scope, $http) {
 
 	}
 
-	$scope.deckAsString = function(deck) {
-		console.log(deck);
-
-		// console.log(JSON.stringify(deck).slice(1,-1));
-		return JSON.parse(JSON.stringify(deck).slice(1,-1));
-	}
+	// $scope.deckAsString = function(deck) {
+	// 	return JSON.parse(JSON.stringify(deck).slice(1,-1));
+	// }
 
 	$scope.openDeck = function (){
 		$scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
 		
-		console.log($scope.deckSelect);
-		// return;
 		$scope.cards = JSON.parse($scope.deckSelect.cards);
-		console.log($scope.cards);
 
 		$scope.selectLead = true;
 		$scope.deckName = $scope.deckSelect.name;
@@ -72,8 +73,10 @@ function Controller($scope, $http) {
 	$scope.previewDeck = function (deck) {
 		$scope.preLeader = deck.leader.name;
 		$scope.preFaction = deck.faction;
+		
 		$scope.previewCards = JSON.parse(deck.cards);
-		$scope.editAction = "/api/decks/" + deck.id;
+		$scope.editAction = "/decks/" + deck.id;
+		$scope.deleteAction = "/api/decks/" + deck.id;
 		$scope.activeDeck = deck.id;
 	}	
 

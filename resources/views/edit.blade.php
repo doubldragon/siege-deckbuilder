@@ -4,46 +4,14 @@
 @section('content')
 
 	<div class='container text-center' ng-app="app" ng-controller="Controller">
-		<h1>Siege! Deckbuilder</h1>
-		<div ng-hide="selectLead">
-		<p>Create New Deck</p>
-		<form class='form-inline' >
-			<div class='form-group' style='margin: 0 auto;'>	
-				
-			<button ng-click="isMonarch=true;">Monarch</button>
-			<button ng-click="isMonarch=false;">Invader</button>
-			<hr>
-			<button class="btn btn-success" ng-click="revealCards(card)" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
-			
-			</div>
-		</form>
-		<br />
-		<p>or Select Existing Deck to Edit</p>
-		<br />
-		<form class='form-inline'>
-			<div class="form-group" style='margin: 0 auto;'>
-		    	
-		    <select class="form-control" id="deckSelect" name="deckSelect">
-		      <option name='' value=''>Choose Deck</option>
-		      <option name='deckSelect' ng-repeat="deck in decks" value="[[deck]]">[[deck.name]]</option>
-		    </select>
-				<button class='btn btn-primary' type="submit" ng-click='openDeck()'>Select Deck</button>
-			</div>
-		</form>
-<!-- 		<div class="alert alert-success" role="alert">
-		  <strong>Well done!</strong> Messaging will go here. 
-		</div>  -->
-		<button class='btn btn-primary' value='4' ng-click="updateQty(value)">Select function</button>
-		</div>
 		
-
-		<div ng-show="selectLead">
 			
+
 			<div class='row'>
 				<div class='col' id='myDeck'>
-						<h3>My Deck</h3>
+						<h3>[[deckName]]</h3>
 						<h4> Leader: [[leader.name]] </h4>
-						<h4> Effect: [[leader.effect]] </h4>
+						<h4> Effect: [[leader.flavor_text]] </h4>
 						<table class="table table-hover">
 						<tr>
 							<th class>Qty</th>
@@ -144,7 +112,6 @@
 				</div>
 				
 			</div>
-		</div>
 	</div>
 	<!-- ng-click="saveDeck({{Auth::User()->id}}, deckName, cards)" -->
 	

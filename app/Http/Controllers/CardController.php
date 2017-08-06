@@ -39,7 +39,7 @@ class CardController extends Controller
                 $card['display'] = false;
             };
         }
-        $decks = \App\Deck::where('user_id', $user)->get();
+        $decks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
         JavaScript::put([
             'cardlist' => $cards,
             'decks' => $decks,

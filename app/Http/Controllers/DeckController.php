@@ -118,7 +118,16 @@ class DeckController extends Controller
      */
     public function update(Request $request, Deck $deck)
     {
-        //
+        // dd($request);
+        $deck = Deck::find($request->deck_id);
+        $deck['user_id'] = $request->user_id;
+        $deck['name'] = $request->name;
+        $deck['cards'] = $request->userDeck;
+        $deck['isMonarch'] = $request->isMonarch;
+        $deck['lead_id'] = $request->lead_id;
+        $deck['id'] = $request->deck_id;
+        $deck->save();
+        return redirect('/home');
     }
 
     /**

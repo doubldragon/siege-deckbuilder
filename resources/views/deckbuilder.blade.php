@@ -40,6 +40,7 @@
 		<div ng-show="selectLead">
 			
 			<div class='row'>
+
 				<div class='col col-md-6' id='myDeck'>
 					<div class="panel panel-default deckHeader">
                 		<div class="panel-heading " >
@@ -61,6 +62,7 @@
 
             
    				 	</div>
+
 
 						<table class="table table-hover">
 						<tr>
@@ -164,7 +166,7 @@
 			</div>
 			<div class='row'>
 				<div class='col'>
-					<form method='post' action="/api/decks"> 
+					<form method='post' action="/api/decks" ng-hide="isEdit"> 
 						{{ method_field('POST')}}
 						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
 						<input type="hidden" name="userDeck" value="[[cards]]">
@@ -175,6 +177,20 @@
 
 						
 						<button class='btn btn-primary' value="submit"  name='saveDeck'>Save Deck</button>
+						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
+					</form>
+					<form method='post' action="[[editAction]]" ng-show="isEdit"> 
+						{{ method_field('PUT')}}
+						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
+						<input type="hidden" name="deck_id" value="[[deck_id]]">
+						<input type="hidden" name="userDeck" value="[[cards]]">
+						<input type="hidden" name="lead_id" value="[[leader.id]]">
+						<input type="hidden" name="isMonarch" value="[[leader.isMonarch]]">
+						<!-- <input type="checkbox" name="isPrivate" ng-model="isPrivate">Check to make this deck Private<br /> -->
+						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
+
+						
+						<button class='btn btn-primary' value="submit"  name='saveDeck'>Save Edit</button>
 						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
 				</div>
