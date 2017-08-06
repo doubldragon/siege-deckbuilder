@@ -3,10 +3,26 @@ function Controller($scope, $http) {
 	$scope.cards = deck.cardlist;
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
+
 	$scope.deckName="";
 	$scope.isPrivate= false;
 	$scope.isMonarch = true;
 	$scope.isEdit = false;
+
+	$scope.deckName = "Untitled Deck";
+	$scope.searchText = "";
+	$scope.newExisting = false;
+	$scope.selectFaction = false;
+
+	if (deck.isEdit){
+		
+		// $scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
+		
+		console.log(deck.cards);
+		// return;
+		$scope.cards = JSON.parse(deck.cards);
+		console.log($scope.cards);
+
 
 	if (deck.isEdit){
 		$scope.cards = JSON.parse(deck.cardlist);

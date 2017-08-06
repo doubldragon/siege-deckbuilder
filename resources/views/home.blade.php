@@ -35,7 +35,7 @@
                             </table>
                         </div>
                         <div class="col deckDisplay">
-                            <div ng-show="preLeader" class="mb-4">
+                            <div ng-show="preLeader" class="row ">
                                 <span class="pull-right">
                                 <form class="form-inline" method="post" action="[[editAction]]">
                                     {{method_field('GET')}}
