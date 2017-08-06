@@ -41,7 +41,7 @@
                                     {{method_field('GET')}}
                                     <button class='btn btn-sm btn-outline-primary ' type="submit" >Edit</button>
                                 </form>
-                                <form class="form-inline" method="post" action="[[editAction]]">
+                                <form class="form-inline" method="post" action="[[deleteAction]]">
                                     {{method_field('DELETE')}}
                                     <button class='btn btn-sm btn-outline-danger ' type="submit" >Delete</button>
                                 </form>

@@ -21,5 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/deckbuilder', 'CardController@index');
 Route::get('/editDeck', function () {
-	return view('deckbuilder');
+	return view('edit');
 });
+
+Route::get('/decks/{deck}', 'DeckController@show');
+
