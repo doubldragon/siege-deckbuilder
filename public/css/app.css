@@ -67,12 +67,10 @@ td.selector {
 	position: absolute;
 	right:50%;
 }
-<<<<<<< Updated upstream
-/*[data-toggle="buttons"] > .btn > input[type="radio"] {
-	clip: rect(1px 10px 1px 1px);
-}*/
-/*[type="radio"] {
-=======
+
+.banner, p {
+	color: #fff;
+} 
 
 h4{
 	margin-top: 0;

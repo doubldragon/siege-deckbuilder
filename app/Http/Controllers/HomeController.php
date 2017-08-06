@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         $user = Auth::id();
         
-        $decks = \App\Deck::where('user_id', $user)->get();
+        $decks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
         foreach($decks as $deck) {
             $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
             $deck['leader'] = $testLead[0];

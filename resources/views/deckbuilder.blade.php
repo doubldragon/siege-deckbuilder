@@ -4,7 +4,7 @@
 @section('content')
 
 	<div class='container text-center' ng-app="app" ng-controller="Controller">
-		<h1>Siege! Deckbuilder</h1>
+		<h1 class="banner">Siege! Deckbuilder</h1>
 		<div ng-hide="selectLead">
 			<div ng-hide="newExisting">
 			<button class="btn btn-primary" ng-click="newExisting=true;">Create New Deck</button>
@@ -40,12 +40,6 @@
 		<div ng-show="selectLead">
 			
 			<div class='row'>
-<<<<<<< Updated upstream
-				<div class='col' id='myDeck'>
-						<h3>My Deck</h3>
-						<h4> Leader: [[leader.name]] </h4>
-						<h4> Effect: [[leader.effect]] </h4>
-=======
 				<div class='col col-md-6' id='myDeck'>
 					<div class="panel panel-default deckHeader">
                 		<div class="panel-heading " >
@@ -68,7 +62,6 @@
             
    				 	</div>
 
->>>>>>> Stashed changes
 						<table class="table table-hover">
 						<tr>
 							<th class>Qty</th>
