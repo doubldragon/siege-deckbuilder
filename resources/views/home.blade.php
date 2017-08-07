@@ -37,17 +37,19 @@
                         <div class="col deckDisplay">
                             <div ng-show="preLeader" class="row ">
                                 <span class="pull-right">
-                                <form class="form-inline" method="post" action="[[editAction]]">
-                                    {{method_field('GET')}}
-                                    <button class='btn btn-sm btn-outline-primary ' type="submit" >Edit</button>
-                                </form>
-                                <form class="form-inline" method="post" action="[[deleteAction]]">
-                                    {{method_field('DELETE')}}
-                                    <button class='btn btn-sm btn-outline-danger ' type="submit" >Delete</button>
-                                </form>
+                                    <form class="form-inline" method="post" action="[[editAction]]">
+                                        {{method_field('GET')}}
+                                        <button class='btn btn-sm btn-outline-primary ' type="submit" >Edit</button>
+                                    </form>
+                                </span>
+                                <span class="pull-right">
+                                    <form class="form-inline" method="post" action="[[deleteAction]]">
+                                        {{method_field('DELETE')}}
+                                        <button class='btn btn-sm btn-outline-danger ' type="submit" >Delete</button>
+                                    </form>
                                 </span>
                             </div>
-                            <h4 ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
+                            <h4 class="mt-2 mb-4" ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
                             <ul>
                                 <li ng-repeat="card in previewCards" ng-show="card.selected" >[[card.quantity]]x [[card.name]]</li>
                             </ul>

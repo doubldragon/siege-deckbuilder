@@ -13,15 +13,15 @@ function Controller($scope, $http) {
 	$scope.searchText = "";
 	$scope.newExisting = false;
 	$scope.selectFaction = false;
+	$scope.displayFilter = {
+		food : true,
+		morale : false,
+		engine : false,
+		defense : false,
+		spy : false
+	};
 
-	if (deck.isEdit){
-		
-		// $scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
-		
-		console.log(deck.cards);
-		// return;
-		$scope.cards = JSON.parse(deck.cards);
-		console.log($scope.cards);
+	
 
 
 	if (deck.isEdit){
@@ -35,7 +35,6 @@ function Controller($scope, $http) {
 	}
 
 	$scope.toggleFaction = function (isMonarch) {
-		console.log('hello');
 		$scope.isMonarch = isMonarch;
 		console.log($scope.isMonarch);
 	}
@@ -52,22 +51,24 @@ function Controller($scope, $http) {
 	};
 
 	$scope.revealCards = function(card) {
+		console.log("why hello!");
 		$scope.selectLead = true;
 		$scope.leader = card;
 
 	}
 
-	// $scope.deckAsString = function(deck) {
-	// 	return JSON.parse(JSON.stringify(deck).slice(1,-1));
-	// }
+	$scope.checkQty = function (qty, button){
+		return (qty == button ? true : false);
+	}
 
 	$scope.openDeck = function (){
 		$scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
-		
+		console.log($scope.deckSelect);
+		$scope.leader = $scope.deckSelect.leader;
 		$scope.cards = JSON.parse($scope.deckSelect.cards);
 
 		$scope.selectLead = true;
-		$scope.deckName = $scope.deckSelect.name;
+		// $scope.deckName = $scope.deckSelect.name;
 	}
 	
 	$scope.previewDeck = function (deck) {
@@ -80,7 +81,16 @@ function Controller($scope, $http) {
 		$scope.activeDeck = deck.id;
 	}	
 
-	$(document).ready(function(){
-    $('[data-toggle="popover"]').popover();   
-});
+	$scope.typeFilter = function (value) { 
+		$scope.displayFilter[value] = !$scope.displayFilter[value];
+		// console.log($scope.displayFilter[value]);
+		// $scope.toggleFilter(value);
+	}
+	
+	$scope.toggleFilter = function (value) {
+		var typeArray = ["leader","castle", "food", "morale", "engine","defense","spy"];
+		// console.log(typeArray[value-1]);
+		// console.log(typeArray[value-1], " is ", $scope.displayFilter[typeArray[value-1]]);
+		return $scope.displayFilter[typeArray[value-1]];
+	}
 }

@@ -29,16 +29,24 @@
 				<button class="btn btn-primary mr-1 ml-1 mb-4" ng-click="isMonarch=false; selectFaction=true;">Invader</button>
 				<!-- <hr> --><br />
 
-				<button ng-show="selectFaction" ng-class="{'btn-primary': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button>
-				
+				<!-- <button ng-show="selectFaction" ng-class="{'btn-primary': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button> -->
+				<div class="col-md-4 center-block" ng-show="selectFaction"   ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >
+				<div class="panel panel-default deckHeader" >
+					<div class=" col-sm-12 panel-heading">  [[card.name]]     </div>
+					<div class="panel-body">
+						[[card.flavor_text]] <br />
+						<button ng-class="{'btn-primary': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)">[[card.name]]</button>
+
+					</div>
+				</div>
 				</div>
 			<!-- </form> -->
-			
+			</div>
 		</div>
 		
 
 		<div ng-show="selectLead">
-			
+			<button class="btn btn-primary mb-3" ng-click="resetForm()">Reset Builder</button>
 			<div class='row'>
 
 				<div class='col col-md-6' id='myDeck'>
@@ -72,33 +80,7 @@
 							<th>Action</th>
 						</tr>
 						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
-							<td class="selector">
-								<form class="btn-group" >
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option1" value="0" ng-model="card.quantity" ng-change="updateQty(0,card)">0
-								  </label>
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option2" value="1" ng-model="card.quantity" ng-change="updateQty(1,card)">1
-								  </label>
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option3" value="2" ng-model="card.quantity" ng-change="updateQty(2,card)">2
-								  </label>
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option4" value="3" ng-model="card.quantity" ng-change="updateQty(3,card)">3
-								  </label>
-								</form>
-								
-								
-							</td>
-							<td>
-								[[card.name]]
-							</td>
-							<td>
-								[[card.deck_points]]
-							</td>
-							<td>
-								[[card.action]]
-							</td>
+							@include ('tablerow')
 						</tr>
 
 					</table>
@@ -112,10 +94,27 @@
                 		<div class="panel-body">
 		                   	<div class="row">
 		                   		<div class="col col-sm-6">
+		                   			
 		                   			<input id="searchBar" type="text" placeholder="Search for card..." ng-model="searchText">
 		                   		</div>
 		                   		<div class="col col-sm-6">
-		                   			Checkbox filter here
+		                   			<div class="btn-group" >
+									  <label class="btn btn-default" ng-class="{'active': displayFilter['food']}">
+									    <input type="checkbox" ng-click="typeFilter('food')"> 2 
+									  </label>
+									  <label class="btn btn-default" ng-class="{'active': displayFilter['morale']}">
+									    <input type="checkbox" ng-click="typeFilter('morale')"> 2 
+									  </label>
+									  <label class="btn btn-default" ng-class="{'active': displayFilter['engine']}">
+									    <input type="checkbox" ng-click="typeFilter('engine')"> 3 
+									  </label>
+									  <label class="btn btn-default" ng-class="{'active': displayFilter['defense']}">
+									    <input type="checkbox" ng-click="typeFilter('defense')"> 3 
+									  </label>
+									  <label class="btn btn-default" ng-class="{'active': displayFilter['spy']}">
+									    <input type="checkbox" ng-click="typeFilter('spy')"> 3 
+									  </label>
+									</div>
 		                   		</div>
 		                   	</div> 
 	                	</div>
@@ -130,35 +129,10 @@
 							<th>Points</th>
 							<th>Action</th>
 						</tr>
-						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: searchText ">
+						<tr ng-repeat="card in cards  | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: searchText " ng-show="toggleFilter(card.type_id)">
 						<!-- | filter: {selected: false} -->
-							<td class="selector">
-								<form class="btn-group" >
-								  <label class="btn btn-sm btn-info active">
-								    <input type="radio" id="option1" value="0" data-ng-model="card.quantity" ng-change="updateQty(0,card)">0
-								  </label>
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option2" value="1" data-ng-model="card.quantity" ng-change="updateQty(1,card)">1
-								  </label>
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option3" value="2" data-ng-model="card.quantity" ng-change="updateQty(2,card)">2
-								  </label>
-								  <label class="btn btn-sm btn-info">
-								    <input type="radio" id="option4" value="3" data-ng-model="card.quantity" ng-change="updateQty(3,card)">3
-								  </label>
-								</form>
-								
-								
-							</td>
-							<td>
-								[[card.name]]
-							</td>
-							<td>
-								[[card.deck_points]]
-							</td>
-							<td>
-								[[card.action]]
-							</td>
+
+							@include('tablerow')
 						</tr>
 
 					</table>
