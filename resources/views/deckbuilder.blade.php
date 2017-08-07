@@ -54,7 +54,7 @@
                 		<div class="panel-heading " >
                 			<h4 style="display:inline-block"><strong>[[leader.name]]</strong></h4> - 
 							<h5 style="display:inline-block"> [[leader.flavor_text]]</h5> <br />
-							<h5 class = "mt-1" ng-class="{'error': deckPoints > 50}">Deck Points: [[deckPoints]]/50</h5>
+							<h5 class = "mt-1" ng-class="{'error': deckPoints > maxPoints}">Deck Points: [[deckPoints]]/[[maxPoints]]</h5>
             			</div>
 
                 		<div class="panel-body">
@@ -151,7 +151,7 @@
 						<input type="text" name="name" ng-model="deckName"  placeholder="Name Your Deck">
 
 						
-						<button class='btn btn-primary' value="submit"  name='saveDeck' ng-disabled="deckPoints>50">Save Deck</button>
+						<button class='btn btn-primary' value="submit"  name='saveDeck' ng-disabled="deckPoints>maxPoints">Save Deck</button>
 						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
 					<form method='post' action="[[editAction]]" ng-show="isEdit"> 
@@ -165,7 +165,7 @@
 						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
 
 						
-						<button class='btn btn-primary' value="submit"  name='saveDeck' ng-disabled="deckPoints>50">Save Edit</button>
+						<button class='btn btn-primary' value="submit"  name='saveDeck' ng-disabled="deckPoints>maxPoints">Save Edit</button>
 						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
 				</div>

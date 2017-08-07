@@ -4,11 +4,12 @@ function Controller($scope, $http) {
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
 	$scope.deckPoints = 0;
+	$scope.maxPoints = 75;
 	$scope.deckName="";
 	$scope.isPrivate= false;
 	$scope.isMonarch = true;
 	$scope.isEdit = false;
-
+	$scope.allDecks = deck.allDecks;
 	$scope.deckName = "Untitled Deck";
 	$scope.searchText = "";
 	$scope.newExisting = false;
@@ -20,6 +21,37 @@ function Controller($scope, $http) {
 		defense : false,
 		spy : false
 	};
+	
+
+
+
+	$scope.getTotal = function () {
+		$scope.deckPoints = 0;
+		$scope.cards.forEach(function (card) {
+		$scope.deckPoints += card.quantity * card.deck_points;
+		});
+	}
+	if (deck.isEdit){
+		$scope.cards = JSON.parse(deck.cardlist);
+		$scope.leader = deck.editDeck.leader;
+		$scope.selectLead = true;
+		$scope.deck_id = deck.editDeck.id;
+		$scope.deckName = deck.editDeck.name;
+		$scope.isEdit = true;
+		$scope.editAction =  "../api/decks/" + $scope.deck_id;
+		$scope.isMonarch = deck.editDeck.leader.isMonarch;
+		$scope.getTotal();
+	}
+
+	$scope.previewDeck = function (deck) {
+		$scope.preLeader = deck.leader.name;
+		$scope.preFaction = deck.faction;
+
+		$scope.previewCards = JSON.parse(deck.cards);
+		$scope.editAction = "/decks/" + deck.id;
+		$scope.deleteAction = "/api/decks/" + deck.id;
+		$scope.activeDeck = deck.id;
+	}
 
 	$scope.resetForm = function ()
 	{
@@ -38,15 +70,7 @@ function Controller($scope, $http) {
 	}
 
 
-	if (deck.isEdit){
-		$scope.cards = JSON.parse(deck.cardlist);
-		$scope.leader = deck.editDeck.leader;
-		$scope.selectLead = true;
-		$scope.deck_id = deck.editDeck.id;
-		$scope.deckName = deck.editDeck.name;
-		$scope.isEdit = true;
-		$scope.editAction =  "../api/decks/" + $scope.deck_id;
-	}
+	
 
 	$scope.toggleFaction = function (isMonarch) {
 		$scope.isMonarch = isMonarch;
@@ -80,25 +104,14 @@ function Controller($scope, $http) {
 		console.log($scope.deckSelect);
 		$scope.leader = $scope.deckSelect.leader;
 		$scope.cards = JSON.parse($scope.deckSelect.cards);
-
+		$scope.deckPoints = $scope.getTotal();
 		$scope.selectLead = true;
-		// $scope.deckName = $scope.deckSelect.name;
 	}
 	
-	$scope.previewDeck = function (deck) {
-		$scope.preLeader = deck.leader.name;
-		$scope.preFaction = deck.faction;
-		
-		$scope.previewCards = JSON.parse(deck.cards);
-		$scope.editAction = "/decks/" + deck.id;
-		$scope.deleteAction = "/api/decks/" + deck.id;
-		$scope.activeDeck = deck.id;
-	}	
+	
 
 	$scope.typeFilter = function (value) { 
 		$scope.displayFilter[value] = !$scope.displayFilter[value];
-		// console.log($scope.displayFilter[value]);
-		// $scope.toggleFilter(value);
 	}
 	
 	$scope.toggleFilter = function (value) {
@@ -108,10 +121,5 @@ function Controller($scope, $http) {
 		return $scope.displayFilter[typeArray[value-1]];
 	}
 
-	$scope.getTotal = function () {
-		$scope.deckPoints = 0;
-		$scope.cards.forEach(function (card) {
-			$scope.deckPoints += card.quantity * card.deck_points;
-		});
-	}
+
 }

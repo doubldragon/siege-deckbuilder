@@ -20,6 +20,10 @@ select.form-control:not([size]):not([multiple]) {
  	background-image: url('../img/castle.jpg');
  	background-size: cover;
     background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow: scroll;
     /*box-shadow:inset 0 0 0 2000px rgba(0,0,0,0.3);*/
  }
 
