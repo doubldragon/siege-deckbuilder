@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Card;
 use App\Deck;
 use Illuminate\Http\Request;
+use Auth;
 use JavaScript;
 
 class DeckController extends Controller
@@ -78,6 +79,7 @@ class DeckController extends Controller
      */
     public function show(Deck $deck)
     {
+        $user = Auth::id();
         $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
         $deck['leader'] = $testLead[0];
         $deck['isEdit'] = true;
@@ -88,10 +90,17 @@ class DeckController extends Controller
             $deck['faction'] = "Invader";
         }
 
+        $userDecks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
+        foreach ($userDecks as $deck) {
+            $lead = \App\Card::where('id',$deck['lead_id'])->get();
+            $deck['leader'] = $lead[0];
+        };
+
         JavaScript::put([
             'cardlist' => $deck['cards'],
             'editDeck' => $deck,
-            'isEdit' => true
+            'isEdit' => true,
+            'decks' => $userDecks
             ]);
 
 

@@ -3,7 +3,7 @@ function Controller($scope, $http) {
 	$scope.cards = deck.cardlist;
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
-
+	$scope.deckPoints = 0;
 	$scope.deckName="";
 	$scope.isPrivate= false;
 	$scope.isMonarch = true;
@@ -21,7 +21,21 @@ function Controller($scope, $http) {
 		spy : false
 	};
 
-	
+	$scope.resetForm = function ()
+	{
+		$scope.selectLead = false;
+		$scope.newExisting = false;
+		$scope.selectFaction = false;
+		$scope.cards.forEach(function (card) {
+			card.quantity = 0;
+		});
+		$scope.deckName = "";
+		deck.isEdit = false;
+		$scope.isEdit = false;
+		$scope.decks = deck.decks;
+		$scope.deckPoints = 0;
+
+	}
 
 
 	if (deck.isEdit){
@@ -46,7 +60,7 @@ function Controller($scope, $http) {
 		} else {
 			card.selected = true;
 		}
-		
+		$scope.getTotal();
 		return card;
 	};
 
@@ -92,5 +106,12 @@ function Controller($scope, $http) {
 		// console.log(typeArray[value-1]);
 		// console.log(typeArray[value-1], " is ", $scope.displayFilter[typeArray[value-1]]);
 		return $scope.displayFilter[typeArray[value-1]];
+	}
+
+	$scope.getTotal = function () {
+		$scope.deckPoints = 0;
+		$scope.cards.forEach(function (card) {
+			$scope.deckPoints += card.quantity * card.deck_points;
+		});
 	}
 }
