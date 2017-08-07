@@ -40,6 +40,11 @@ class CardController extends Controller
             };
         }
         $decks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
+        foreach ($decks as $deck) {
+            $lead = \App\Card::where('id',$deck['lead_id'])->get();
+            $deck['leader'] = $lead[0];
+        };
+        
         JavaScript::put([
             'cardlist' => $cards,
             'decks' => $decks,

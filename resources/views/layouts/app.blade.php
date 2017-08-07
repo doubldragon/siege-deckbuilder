@@ -92,6 +92,7 @@
                 $interpolateProvider.endSymbol(']]');
             })
             .controller('Controller', Controller);
+            
     </script>
     
     <script src="{{ asset('js/app.js') }}"></script>
