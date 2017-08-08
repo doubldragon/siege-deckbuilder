@@ -11,10 +11,12 @@
     <title>Siege!</title>
 
     <!-- Styles -->
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-img">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -29,8 +31,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                       <!--  {{ config('app.name', 'Siege!') }} --> Siege!
+
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                       <!--  {{ config('app.name', 'Siege!') }} --> <img  src=" {{asset ('/img/siege-banner.png') }}" >
                     </a>
                 </div>
 
@@ -41,7 +44,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -49,7 +52,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} 
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -64,6 +67,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="/deckbuilder">Deckbuilder</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -74,8 +80,22 @@
 
         @yield('content')
     </div>
-
+    </div>
+    @include('footer')
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="/deckbuilder.js"></script>
+    <script>
+        angular
+            .module('app', [], function($interpolateProvider){
+                $interpolateProvider.startSymbol('[[');
+                $interpolateProvider.endSymbol(']]');
+            })
+            .controller('Controller', Controller);
+            
+    </script>
+    
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>
