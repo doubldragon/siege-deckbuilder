@@ -12,12 +12,8 @@
                     @endif
                 </div>
 
-<<<<<<< Updated upstream
-                <div class="panel-body">
-
-=======
                 <div class="panel-body ml-4">
->>>>>>> Stashed changes
+
                     <h5>Welcome back, {{Auth::User()->username}}!</h5>
                     <ul>
                         <li>
