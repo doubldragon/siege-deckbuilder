@@ -33,7 +33,7 @@
                     <!-- Branding Image -->
 
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                       <!--  {{ config('app.name', 'Siege!') }} --> <img class="logo" style="display:inline-block" src="https://png.icons8.com/catapult/ios7/50" title="Catapult" width="40" height="40">Siege!
+                       <!--  {{ config('app.name', 'Siege!') }} --> <img  src=" {{asset ('/img/siege-banner.png') }}" >
                     </a>
                 </div>
 
@@ -44,7 +44,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" style="display: inline-block;">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>

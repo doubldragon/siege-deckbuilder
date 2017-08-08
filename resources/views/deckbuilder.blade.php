@@ -6,19 +6,19 @@
 	<div class='container text-center' ng-app="app" ng-controller="Controller">
 		<h1 class="banner">Siege! Deckbuilder</h1>
 		<div ng-hide="selectLead">
-			<div ng-hide="newExisting">
-			<button class="btn btn-primary" ng-click="newExisting=true;">Create New Deck</button>
+			<div ng-hide="newExisting" class="deckHeader col-md-6 center-block" >
+			<button class="btn btn-primary mt-3" ng-click="newExisting=true;">Create New Deck</button>
 			<br /><br />
 			<p class="mb-1">or Select Existing Deck to Edit</p>
 			
 			<form class='form-inline'>
 				<div class="form-group" style='margin: 0 auto;'>
 			    	
-			    <select class="form-control" id="deckSelect" name="deckSelect">
+			    <select class="form-control mb-4" id="deckSelect" name="deckSelect">
 			      <option name='' value=''>Choose Deck</option>
 			      <option name='deckSelect' ng-repeat="deck in decks" value="[[deck]]">[[deck.name]]</option>
 			    </select>
-					<button class='btn btn-primary' type="submit" ng-click='openDeck()'>Select Deck</button>
+					<button style="margin: 0 auto;" class='btn btn-primary mb-4' type="submit" ng-click='openDeck()'>Select Deck</button>
 				</div>
 			</form>
 			</div>
@@ -28,14 +28,13 @@
 				<button class="btn btn-primary mr-1 ml-1 mb-4" ng-click="isMonarch=true; selectFaction=true;">Monarch</button>
 				<button class="btn btn-primary mr-1 ml-1 mb-4" ng-click="isMonarch=false; selectFaction=true;">Invader</button>
 				<!-- <hr> --><br />
-
-				<!-- <button ng-show="selectFaction" ng-class="{'btn-primary': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)" ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >[[card.name]]</button> -->
-				<div class="col-md-4 center-block" ng-show="selectFaction"   ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" >
-				<div class="panel panel-default deckHeader" >
+				
+				<div class="col-md-4 center-block" ng-show="selectFaction"   ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" style="display:inline-block; ">
+				<div class="panel panel-default deckHeader" style="height:200px;">
 					<div class=" col-sm-12 panel-heading">  [[card.name]]     </div>
 					<div class="panel-body">
 						[[card.flavor_text]] <br />
-						<button ng-class="{'btn-primary': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)">[[card.name]]</button>
+						<button ng-class="{'btn-primary': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)">Select</button>
 
 					</div>
 				</div>
@@ -101,19 +100,24 @@
 		                   		<div class="col col-sm-6">
 		                   			<div class="btn-group" >
 									  <label class="btn btn-default" ng-class="{'active': displayFilter['food']}">
-									    <input type="checkbox" ng-click="typeFilter('food')"> 2 
+									    <input type="checkbox" ng-click="typeFilter('food')"> 
+									    <img src="https://png.icons8.com/poultry-leg-filled/ios7/25" title="Poultry Leg Filled" width="20" height="20">
 									  </label>
 									  <label class="btn btn-default" ng-class="{'active': displayFilter['morale']}">
-									    <input type="checkbox" ng-click="typeFilter('morale')"> 2 
+									    <input type="checkbox" ng-click="typeFilter('morale')"> 
+									    <img src="https://png.icons8.com/happy/ios7/25" title="Happy" width="20" height="20"> 
 									  </label>
 									  <label class="btn btn-default" ng-class="{'active': displayFilter['engine']}">
-									    <input type="checkbox" ng-click="typeFilter('engine')"> 3 
+									    <input type="checkbox" ng-click="typeFilter('engine')">
+									    <img src="https://png.icons8.com/catapult/ios7/25" title="Catapult" width="20" height="20">
 									  </label>
 									  <label class="btn btn-default" ng-class="{'active': displayFilter['defense']}">
-									    <input type="checkbox" ng-click="typeFilter('defense')"> 3 
+									    <input type="checkbox" ng-click="typeFilter('defense')">
+									    <img src="https://png.icons8.com/defense/androidL/24" title="Defense Filled" width="20" height="20"> 
 									  </label>
 									  <label class="btn btn-default" ng-class="{'active': displayFilter['spy']}">
-									    <input type="checkbox" ng-click="typeFilter('spy')"> 3 
+									    <input type="checkbox" ng-click="typeFilter('spy')">
+									    <img src="https://png.icons8.com/spy-male-filled/ios7/25" title="Spy Male Filled" width="20" height="20">
 									  </label>
 									</div>
 		                   		</div>
