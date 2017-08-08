@@ -30,11 +30,19 @@
 				<div   ng-show="selectFaction"  style="display: inline-block;" class="row">
 				<div class="col col-md-2"></div>
 				<div ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" class="ml-1 mr-1 col-md-4 panel panel-default " style="height:250px;">
-					<div class=" col-sm-12 panel-heading">  [[card.name]]     </div>
+					<div class=" col-sm-12 panel-heading">[[card.name]]<hr style="margin:0;">
+						[[card.flavor_text]]
+					</div>
 					<div class="panel-body">
-						[[card.flavor_text]] <br />
-						<button ng-class="{'btn-success': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1" ng-click="revealCards(card)">Select</button>
+						 <br />
+						[[card.action]]<br />
+						[[card.effect]]
 
+					</div>
+					<div class="panel panel-footer selectButton">
+						<!-- <div class="col"> -->
+							<button ng-class="{'btn-success': [[isMonarch]], 'btn-danger': ![[isMonarch]]}" class="btn mr-1 ml-1 " ng-click="revealCards(card)">Select</button>
+						<!-- </div> -->
 					</div>
 				</div>
 				</div>

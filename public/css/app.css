@@ -11,10 +11,25 @@ select.form-control:not([size]):not([multiple]) {
  .btn-sm {
 	padding-left: 5px;
 	padding-right: 5px;
-
+	
  }	
 #searchBar {
 	width: 100%;
+}
+
+.selectButton {
+	position: absolute;
+	bottom: 0;
+	width:100%;
+	margin: 0;
+	margin-left: -15px;
+	/*width: 70px;
+	margin-left: -35px;*/
+}
+
+.panel-body {
+	padding-left: 0;
+	padding-right: 0;
 }
  body, html {
  	background-color: #5299d3;
