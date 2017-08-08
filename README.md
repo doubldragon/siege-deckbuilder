@@ -3,12 +3,16 @@
 ### A Deckbuinding, Asymmetrical Card Game
 
 
+
 ## Deckbuilder
+
 
 Siege! is a strategy game that revolves around assymetrical play and deckbuilding from a pool of cards. This project will serve as the foundational deckbuilding piece of the game where players can log in and build various decks, mark them as public or private, and save them for the future. 
 
 
+
 ## Decks
+
 
 ### There are two decks in Siege!: An Invader deck and a Monarch Deck
 

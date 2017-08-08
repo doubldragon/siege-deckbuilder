@@ -13,6 +13,7 @@
                 </div>
 
                 <div class="panel-body">
+
                     <h5>Welcome back, {{Auth::User()->username}}!</h5>
                     <ul>
                         <li>
@@ -26,7 +27,7 @@
                         </li>
                     </ul>
                     
-                </div>
+
 
             
             </div>

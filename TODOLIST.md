@@ -1,18 +1,22 @@
  
 #TODO LIST
 
-# Database
-<!-- - Verify Setup of User/Admin logins - DONE -->
-<!-- - Design Schema for Tables -->
-- Users
-- standard fields with laravel auth
- 		- replace `Name` with `username` (unique)
- 		- isAdmin (default is false)
+
+ - Verify Setup of User/Admin logins
+ - Design Schema for Tables
+ 	- Roles
+ 		- id
+ 		- role name
+ 	- Users
+ 		- standard fields with laravel auth
+ 		- one exception: replace `Name` with `username` (unique)
+
  	- Decks
 		- id
 		- deck name
 		- user_id
 		- timestamps
+
 	- Card Types
 		- id
 		- type (leader, castle, normal)
@@ -21,16 +25,19 @@
  		- isMonarch (Invader if false)
  		- type (leader,castle, food production, morale, etc)
  		- name
+
  		- deck points
  		- cost
  		- action
  		- side effects
  		- flavor text
  		- timestamps
+
  	- Decks_Cards
  		- deck_id
  		- card_id
  		- quantity
+
 
  - Create migrations and controllers
  - Seed database
