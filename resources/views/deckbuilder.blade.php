@@ -25,9 +25,10 @@
 				<div class="container" >
 				<button class="btn btn-success mr-1 ml-1 mb-4 mt-2" ng-click="isMonarch=true; selectFaction=true;">Monarch</button>
 				<button class="btn btn-success mr-1 ml-1 mb-4 mt-2" ng-click="isMonarch=false; selectFaction=true;">Invader</button>
-				</div><br />
-				<!-- <div class="col-md-2"></div> -->
-				<div   ng-show="selectFaction"  style="display: inline-block;" class="row">
+				</div>
+				<p ng-hide="selectFaction"><strong>Select your faction</strong></p>
+				<p ng-show="selectFaction"><strong>Who will lead you into battle?</strong></p>
+				<div ng-show="selectFaction"  style="display: inline-block;" class="row">
 				<div class="col col-md-2"></div>
 				<div ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" class="ml-1 mr-1 col-md-4 panel panel-default " style="height:250px;">
 					<div class=" col-sm-12 panel-heading">[[card.name]]<hr style="margin:0;">
