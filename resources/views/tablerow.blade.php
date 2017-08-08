@@ -23,5 +23,5 @@
 								[[card.deck_points]]
 							</td>
 							<td>
-								[[card.action]]
+								<img src="[[card.type_icon]]" width="25" height="25">
 							</td>

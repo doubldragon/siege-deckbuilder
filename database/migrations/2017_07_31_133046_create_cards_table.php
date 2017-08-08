@@ -18,6 +18,7 @@ class CreateCardsTable extends Migration
             $table->boolean('isMonarch');
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('card_types');
+            $table->string('type_icon')->nullable();
             $table->string('name')->unique();
             $table->integer('deck_points')->nullable();
             $table->integer('cost')->nullable();

@@ -28,22 +28,23 @@ $factory->define(App\Card::class, function (Faker\Generator $faker) {
 
     $icons = array(
 
-            '<img src="https://png.icons8.com/crown-filled/ios7/25" title="Crown Filled" width="25" height="25">',
-            '<img src="https://png.icons8.com/castle-filled/ios7/25" title="Castle Filled" width="25" height="25">',
-            '<img src="https://png.icons8.com/poultry-leg-filled/ios7/25" title="Poultry Leg Filled" width="25" height="25">',
-            '<img src="https://png.icons8.com/happy/ios7/25" title="Happy" width="25" height="25">',    
-            '<img src="https://png.icons8.com/catapult/ios7/25" title="Catapult" width="25" height="25">',
-            '<img src="https://png.icons8.com/defense-filled/ios7/25" title="Defense Filled" width="25" height="25">',
-            '<img src="https://png.icons8.com/spy-male-filled/ios7/25" title="Spy Male Filled" width="25" height="25">'
+            'https://png.icons8.com/crown-filled/ios7/25',
+            'https://png.icons8.com/castle-filled/ios7/25',
+            'https://png.icons8.com/poultry-leg-filled/ios7/25',
+            'https://png.icons8.com/happy/ios7/25',    
+            'https://png.icons8.com/catapult/ios7/25',
+            'https://png.icons8.com/defense/androidL/24',
+            'https://png.icons8.com/spy-male-filled/ios7/25 '
         );
     $type = rand(3,7);
+    
     return [
         
         'isMonarch' => $faker->boolean,
         'name' => $faker->name,
         'deck_points' => rand(1,5),
         'type_id' => $type,
-        'type_icon' => $icons['type'-1],
+        'type_icon' => $icons[$type-1],
         'cost' => rand(1,8),
         'action' => $faker->sentence,
         'effect' => $faker->sentence,
