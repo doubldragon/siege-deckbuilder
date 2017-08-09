@@ -12,6 +12,7 @@
                     @endif
                 </div>
 
+
                 <div class="panel-body ml-4">
 
                     <h5>Welcome back, {{Auth::User()->username}}!</h5>
@@ -28,7 +29,7 @@
                     </ul>
                     
 
-
+            </div>
             
             </div>
             <div ng-show="activeSel=='myDecks'" class="panel panel-default">
