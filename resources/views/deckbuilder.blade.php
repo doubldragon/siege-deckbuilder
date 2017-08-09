@@ -31,11 +31,12 @@
 				<div ng-show="selectFaction"  style="display: inline-block;" class="row">
 				<div class="col col-md-2"></div>
 				<div ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {type_id: 1}" class="ml-1 mr-1 col-md-4 panel panel-default " style="height:250px;">
-					<div class=" col-sm-12 panel-heading">[[card.name]]<hr style="margin:0;">
-						[[card.flavor_text]]
+					<div class=" col-sm-12 panel-heading" style="padding-left:0;padding-right: 0;">[[card.name]]<hr style="margin:0;">
+						<small>[[card.flavor_text]]</small>
 					</div>
 					<div class="panel-body">
-						 <br />
+						<img src="[[card.type_icon]]" width="100px" height="100px">
+						 <!-- <br /> -->
 						[[card.action]]<br />
 						[[card.effect]]
 
@@ -67,7 +68,7 @@
                 		<div class="panel-body">
 		                   	<div class="row">
 		                   		<div class= "col col-sm-4">
-		                   			Picture
+		                   			<img src="[[leader.type_icon]]" class="ml-2">
 		                   		</div>
 		                   		<div class="col col-sm-8">
 		                   			<div class="row">[[leader.action]]</div>
