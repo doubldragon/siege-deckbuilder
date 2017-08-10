@@ -104,7 +104,7 @@
         		<div class="panel-body">
                    	<div class="row">
                    		<div class= "col col-sm-4">
-                   			<img src="[[leader.type_icon]]" class="ml-2">
+                   			<img src='[[leader.type_icon]]' class="ml-2">
                    		</div>
                    		<div class="col col-sm-8">
                    			<div class="row">[[leader.action]]</div>
