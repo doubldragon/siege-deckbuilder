@@ -12,6 +12,7 @@
                     @endif
                 </div>
 
+
                 <div class="panel-body ml-4">
 
                     <h5>Welcome back, {{Auth::User()->username}}!</h5>
@@ -28,7 +29,7 @@
                     </ul>
                     
 
-
+            </div>
             
             </div>
             <div ng-show="activeSel=='myDecks'" class="panel panel-default">
@@ -66,7 +67,7 @@
                             <h4 class="mt-2 mb-2" ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
                             <!-- <h5 ng-show="preLeader" class="mb-4">[[deckPoints]]/[[maxPoints]] points</h5> -->
                             <ul>
-                                <li ng-repeat="card in previewCards" ng-show="card.selected" >[[card.quantity]]x [[card.name]]</li>
+                                <li ng-repeat="card in previewCards" ng-show="card.selected" ng-click="cardModal(card)"><a href='#' data-toggle="modal" data-target="#myModal">[[card.quantity]]x [[card.name]]</a></li>
                             </ul>
 
                         </div>
@@ -101,7 +102,7 @@
                             <h4 class="mt-4 mb-2" ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
                             <!-- <h5 ng-show="preLeader" class="mb-4">[[deckPoints]]/[[maxPoints]] points</h5> -->
                             <ul>
-                                <li ng-repeat="card in previewCards" ng-show="card.selected" >[[card.quantity]]x [[card.name]]</li>
+                                <li ng-repeat="card in previewCards" ng-show="card.selected" ng-click="cardModal(card)"><a href='#' data-toggle="modal" data-target="#myModal">[[card.quantity]]x [[card.name]]</a></li>
                             </ul>
 
                         </div>
@@ -111,7 +112,12 @@
         </div>
     </div>
 
+
+@include ('cardModal')
+
+
 </div>
+
 
 
 @endsection

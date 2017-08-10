@@ -16,8 +16,8 @@
 								
 								
 							</td>
-							<td>
-								[[card.name]]
+							<td >
+								<a href="#" ng-click="cardModal(card)" data-toggle="modal" data-target="#myModal">[[card.name]]</a>
 							</td>
 							<td>
 								[[card.deck_points]]

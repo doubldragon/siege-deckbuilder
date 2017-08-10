@@ -11,7 +11,7 @@
     <title>Siege!</title>
 
     <!-- Styles -->
-    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Slabo+27px" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -39,8 +39,10 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                    <ul class="nav navbar-nav" style="display: inline-block;">
+                        <li ><a href="/home">Home</a></li>
+                        <li ><a href="/deckbuilder">Deckbuilder</a></li>
+                        <li ><a href="/about">About</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

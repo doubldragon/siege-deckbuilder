@@ -29,6 +29,7 @@ function Controller($scope, $http) {
 		$scope.deckPoints = 0;
 		$scope.cards.forEach(function (card) {
 		$scope.deckPoints += card.quantity * card.deck_points;
+
 		});
 	}
 	if (deck.isEdit){
@@ -60,6 +61,7 @@ function Controller($scope, $http) {
 		$scope.selectFaction = false;
 		$scope.cards.forEach(function (card) {
 			card.quantity = 0;
+			card.selected = false;
 		});
 		$scope.deckName = "";
 		deck.isEdit = false;
@@ -74,7 +76,7 @@ function Controller($scope, $http) {
 
 	$scope.toggleFaction = function (isMonarch) {
 		$scope.isMonarch = isMonarch;
-		console.log($scope.isMonarch);
+		
 	}
 
 	$scope.updateQty = function (value, card) {
@@ -89,7 +91,6 @@ function Controller($scope, $http) {
 	};
 
 	$scope.revealCards = function(card) {
-		console.log("why hello!");
 		$scope.selectLead = true;
 		$scope.leader = card;
 
@@ -101,14 +102,15 @@ function Controller($scope, $http) {
 
 	$scope.openDeck = function (){
 		$scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
-		console.log($scope.deckSelect);
 		$scope.leader = $scope.deckSelect.leader;
 		$scope.cards = JSON.parse($scope.deckSelect.cards);
 		$scope.deckPoints = $scope.getTotal();
 		$scope.selectLead = true;
 	}
 	
-	
+	$scope.cardModal = function (card){
+		$scope.mCard = card;
+		}
 
 	$scope.typeFilter = function (value) { 
 		$scope.displayFilter[value] = !$scope.displayFilter[value];
@@ -116,10 +118,9 @@ function Controller($scope, $http) {
 	
 	$scope.toggleFilter = function (value) {
 		var typeArray = ["leader","castle", "food", "morale", "engine","defense","spy"];
-		// console.log(typeArray[value-1]);
-		// console.log(typeArray[value-1], " is ", $scope.displayFilter[typeArray[value-1]]);
 		return $scope.displayFilter[typeArray[value-1]];
 	}
 
-
+	$scope.checkScope = function () {
+	}
 }

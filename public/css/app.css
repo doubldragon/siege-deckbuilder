@@ -13,8 +13,10 @@ select.form-control:not([size]):not([multiple]) {
 	padding-right: 5px;
 	
  }	
+
 #searchBar {
-	width: 100%;
+	/*width: 100%;*/
+	margin-left: 10px;
 }
 
 .selectButton {
@@ -71,7 +73,7 @@ th {
 
  .deckDisplay {
  	background-color: rgba(230,230,230,0.2);
- 	margin-right: 10px;
+ 	margin-right: 25px;
  	height: 400px;
  	overflow: auto;
  	box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
@@ -126,25 +128,26 @@ h4, h5{
 	color: red;
 }
 
-/* html, body {
-  width: 100%;
-  height: 100%;
+.aboutHeader {
+	color: #fff;
 }
 
-.bg-img {
-  width: 100%;
-  height: 100%;
-  background: url('../img/castle.jpg') center center no-repeat;
-  background-size: cover;
-  
-  &:before {
-    content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
-	opacity: .9; 
-  }
-}*/
+.aboutText {
+	font-family: 'Roboto Slab', serif;;
+}
+
+.aboutLink {
+	color:#800000;
+}
+
+.leaderStack {
+	
+	width: 50%;
+	height:auto;
+}
+
+.searchBar {
+	height: 34px;
+	width: 250px;
+	border-radius: 6px;
+}
