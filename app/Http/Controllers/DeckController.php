@@ -81,21 +81,23 @@ class DeckController extends Controller
     {
         $user = Auth::id();
         $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
+       
         $deck['leader'] = $testLead[0];
+
         $deck['isEdit'] = true;
-        // dd($deck['leader']['isMonarch']);
         if ($deck['leader']['isMonarch']){
             $deck['faction'] = "Monarch";
         } else {
             $deck['faction'] = "Invader";
-        }
-
-        $userDecks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
-        foreach ($userDecks as $deck) {
-            $lead = \App\Card::where('id',$deck['lead_id'])->get();
-            $deck['leader'] = $lead[0];
         };
 
+        $userDecks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
+        foreach ($userDecks as $userDeck) {
+            $lead = \App\Card::where('id',$userDeck['lead_id'])->get();
+            $userDeck['leader'] = $lead[0];
+        };
+
+        
         JavaScript::put([
             'cardlist' => $deck['cards'],
             'editDeck' => $deck,
