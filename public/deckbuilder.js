@@ -29,7 +29,9 @@ function Controller($scope, $http) {
 		$scope.deckPoints = 0;
 		$scope.cards.forEach(function (card) {
 		$scope.deckPoints += card.quantity * card.deck_points;
+
 		});
+		console.log($scope.deckPoints);
 	}
 	if (deck.isEdit){
 		$scope.cards = JSON.parse(deck.cardlist);
@@ -60,7 +62,9 @@ function Controller($scope, $http) {
 		$scope.selectFaction = false;
 		$scope.cards.forEach(function (card) {
 			card.quantity = 0;
+			card.selected = false;
 		});
+		console.log($scope.cards);
 		$scope.deckName = "";
 		deck.isEdit = false;
 		$scope.isEdit = false;
@@ -108,7 +112,10 @@ function Controller($scope, $http) {
 		$scope.selectLead = true;
 	}
 	
-	
+	$scope.cardModal = function (card){
+		$scope.mCard = card;
+		console.log($scope.mCard.name);
+		}
 
 	$scope.typeFilter = function (value) { 
 		$scope.displayFilter[value] = !$scope.displayFilter[value];
@@ -121,5 +128,8 @@ function Controller($scope, $http) {
 		return $scope.displayFilter[typeArray[value-1]];
 	}
 
-
+	$scope.checkScope = function () {
+		console.log(42);
+		console.log($scope);
+	}
 }

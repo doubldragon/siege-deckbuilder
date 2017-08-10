@@ -26,3 +26,10 @@ Route::get('/editDeck', function () {
 
 Route::get('/decks/{deck}', 'DeckController@show');
 
+Route::get('/card', function () {
+	return view('card');
+});
+
+Route::get('/about', function () {
+	return view('about');
+});
