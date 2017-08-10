@@ -13,8 +13,9 @@ select.form-control:not([size]):not([multiple]) {
 	padding-right: 5px;
 	
  }	
+
 #searchBar {
-	width: 100%;
+	/*width: 100%;*/
 	margin-left: 10px;
 }
 
@@ -143,4 +144,10 @@ h4, h5{
 	
 	width: 50%;
 	height:auto;
+}
+
+.searchBar {
+	height: 34px;
+	width: 250px;
+	border-radius: 6px;
 }

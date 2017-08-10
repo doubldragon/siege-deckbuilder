@@ -8,7 +8,7 @@
 			<p class="aboutText">
 				Siege! is an asymmetric, deck building card game of strategy for control of the realm.
 			</p>
-			<h3 class="aboutHeader">What does it mean for a game to be "asymmetric"? </h4><br>
+			<h3 class="aboutHeader">What do you mean by "asymmetric"? </h4><br>
 			<p class="aboutText">
 				In Siege! there are two factions, the Monarch and the Invader. The Monarch is lord of his castle, but has found himself in a pickle. An Invader has arrived at his doorstep and laid siege to the castle. The Invader clearly has conquest on his mind and the King is just hoping to keep his people fed and survive. Their goals are different and require vastly different strategies.
 			</p>
@@ -23,14 +23,14 @@
 			<img src="img/leaderstack.png" class="leaderStack" height="50%" width="50%">
 		</div>
 	</div>
-	<div class="row col-lg-8 col-lg-offset-2" style="background-color: rgba(82, 153, 211,0.9);">
-		<div class="col-md-8">
+	<div class="mb-5 row col-lg-8 col-lg-offset-2" style="background-color: rgba(82, 153, 211,0.9);">
+		<div class="mb-2 col-md-8">
 			<h2 class="aboutHeader">About the Creator</h3>
 			<p class="aboutText">
 				<a class="aboutLink" href="http://brandonspencer.me" target="_blank">Brandon Spencer</a> is a Web Developer, Polymath, and a Tinkerer. He has over ten years of leadership experience, and finding creative solutions to problems. In addition to taking things apart, he also enjoys putting things back together. 
 			</p>
 		</div>
-		<div class="col col-md-4">
+		<div class="mb-2 col col-md-4">
 			<img class="mt-5" src="img/profile.jpg" height="240px" width="240px">
 		</div>
 	</div>

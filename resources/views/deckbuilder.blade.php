@@ -61,149 +61,131 @@
 					</div>
 					</div>
 				</div>
-
-
-
-
-
-				
 			
 			</div>
 		</div>
 </div>		
 
 		<div ng-show="selectLead">
-			<button class="btn btn-success mb-3" ng-click="resetForm()">Reset Builder</button>
+			
+				
 			<div class='row'>
-
 				<div class='col col-md-6' id='myDeck'>
-					<div class="panel panel-default deckHeader">
-                		<div class="panel-heading " >
-                			<h4 style="display:inline-block"><strong>[[leader.name]]</strong></h4> - 
-							<h5 style="display:inline-block"> [[leader.flavor_text]]</h5> <br />
-							<h5 class = "mt-1" ng-class="{'error': deckPoints > maxPoints}">Deck Points: [[deckPoints]]/[[maxPoints]]</h5>
-            			</div>
-
-                		<div class="panel-body">
-		                   	<div class="row">
-		                   		<div class= "col col-sm-4">
-		                   			<img src="[[leader.type_icon]]" class="ml-2">
-		                   		</div>
-		                   		<div class="col col-sm-8">
-		                   			<div class="row">[[leader.action]]</div>
-		                   			<div class="row">[[leader.effect]]</div>
-		                   		</div>
-		                   	</div> 
-	                	</div>
-
-            
-   				 	</div>
-
-
-						<table class="table table-hover">
-						<tr>
-							<th class>Qty</th>
-							<th>Name</th>
-							<th>Points</th>
-							<th>Action</th>
-						</tr>
-						<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
-							@include ('tablerow')
-						</tr>
-
-					</table>
-				</div>
-				<div class='col' id='availableCards'>
-					<div class="panel panel-default deckHeader">
-                		<div class="panel-heading " >
-                			<h4 style="display:inline-block">Available Cards</h4>
-            			</div>
-
-                		<div class="panel-body">
-		                   	<div class="row">
-		                   		<div class="col col-sm-6">
-		                   			
-		                   			<input id="searchBar" type="text" placeholder="Search for card..." ng-model="searchText">
-		                   		</div>
-		                   		<div class="col col-sm-6">
-		                   			<div class="btn-group" >
-									  <label class="btn btn-default" ng-class="{'active': displayFilter['food']}">
-									    <input type="checkbox" ng-click="typeFilter('food')"> 
-									    <img src="https://png.icons8.com/poultry-leg-filled/ios7/25" title="Poultry Leg Filled" width="20" height="20">
-									  </label>
-									  <label class="btn btn-default" ng-class="{'active': displayFilter['morale']}">
-									    <input type="checkbox" ng-click="typeFilter('morale')"> 
-									    <img src="https://png.icons8.com/happy/ios7/25" title="Happy" width="20" height="20"> 
-									  </label>
-									  <label class="btn btn-default" ng-class="{'active': displayFilter['engine']}">
-									    <input type="checkbox" ng-click="typeFilter('engine')">
-									    <img src="https://png.icons8.com/catapult/ios7/25" title="Catapult" width="20" height="20">
-									  </label>
-									  <label class="btn btn-default" ng-class="{'active': displayFilter['defense']}">
-									    <input type="checkbox" ng-click="typeFilter('defense')">
-									    <img src="https://png.icons8.com/defense/androidL/24" title="Defense Filled" width="20" height="20"> 
-									  </label>
-									  <label class="btn btn-default" ng-class="{'active': displayFilter['spy']}">
-									    <input type="checkbox" ng-click="typeFilter('spy')">
-									    <img src="https://png.icons8.com/spy-male-filled/ios7/25" title="Spy Male Filled" width="20" height="20">
-									  </label>
-									</div>
-		                   		</div>
-		                   	</div> 
-	                	</div>
-
-            
-   				 	</div>
-					
-					<table class="table table-hover">
-						<tr>
-							<th class>Qty</th>
-							<th>Name</th>
-							<th>Points</th>
-							<th>Action</th>
-						</tr>
-						<tr ng-repeat="card in cards  | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: searchText " ng-show="toggleFilter(card.type_id)">
-						<!-- | filter: {selected: false} -->
-
-							@include('tablerow')
-						</tr>
-
-					</table>
-				</div>
-			</div>
-			<div class='row'>
+					<div class='row mb-3'>
 				<div class='col'>
-					<form method='post' action="/api/decks" ng-hide="isEdit"> 
+					<form method='post' action="/api/decks" ng-hide="isEdit" style="display:inline-block;"> 
 						{{ method_field('POST')}}
 						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
 						<input type="hidden" name="userDeck" value="[[cards]]">
 						<input type="hidden" name="lead_id" value="[[leader.id]]">
 						<input type="hidden" name="isMonarch" value="[[leader.isMonarch]]">
-						<!-- <input type="checkbox" name="isPrivate" ng-model="isPrivate">Check to make this deck Private<br /> -->
-						<input type="text" name="name" ng-model="deckName"  placeholder="Name Your Deck">
-
-						
+						<input class="searchBar" type="text" name="name" ng-model="deckName"  placeholder="Name Your Deck">
 						<button class='btn btn-success' value="submit"  name='saveDeck' ng-disabled="deckPoints>maxPoints">Save Deck</button>
-						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
-					<form method='post' action="[[editAction]]" ng-show="isEdit"> 
+					<form method='post' action="[[editAction]]" ng-show="isEdit" style="display:inline-block;"> 
 						{{ method_field('PUT')}}
 						<input type="hidden" name="user_id" value="{{Auth::User()->id}}">
 						<input type="hidden" name="deck_id" value="[[deck_id]]">
 						<input type="hidden" name="userDeck" value="[[cards]]">
 						<input type="hidden" name="lead_id" value="[[leader.id]]">
 						<input type="hidden" name="isMonarch" value="[[leader.isMonarch]]">
-						<!-- <input type="checkbox" name="isPrivate" ng-model="isPrivate">Check to make this deck Private<br /> -->
-						<input type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
-
-						
+						<input class="searchbBar" type="text" name="name" ng-model="deckName" placeholder="Name Your Deck">
 						<button class='btn btn-success' value="submit"  name='saveDeck' ng-disabled="deckPoints>maxPoints">Save Edit</button>
-						<!-- <button class='btn btn-outline-danger' value='submit' name='deleteDeck'>Delete Deck</button> -->
 					</form>
 				</div>
-				
 			</div>
+			<div class="panel panel-default deckHeader">
+        		<div class="panel-heading " >
+        			<h4 style="display:inline-block"><strong>[[leader.name]]</strong></h4> - 
+					<h5 style="display:inline-block"> [[leader.flavor_text]]</h5> <br />
+					<h5 class = "mt-1" ng-class="{'error': deckPoints > maxPoints}">Deck Points: [[deckPoints]]/[[maxPoints]]</h5>
+    			</div>
+
+        		<div class="panel-body">
+                   	<div class="row">
+                   		<div class= "col col-sm-4">
+                   			<img src="[[leader.type_icon]]" class="ml-2">
+                   		</div>
+                   		<div class="col col-sm-8">
+                   			<div class="row">[[leader.action]]</div>
+                   			<div class="row">[[leader.effect]]</div>
+                   		</div>
+                   	</div> 
+            	</div>
+		 	</div>
+			<table class="table table-hover">
+				<tr>
+					<th class>Qty</th>
+					<th>Name</th>
+					<th>Points</th>
+					<th>Action</th>
+				</tr>
+				<tr ng-repeat="card in cards | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: {selected: true}">
+					@include ('tablerow')
+				</tr>
+
+			</table>
 		</div>
+		<div class='col' id='availableCards'>
+			<button class="btn btn-warning mb-3" ng-click="resetForm()">Reset Builder</button>
+			<div class="panel panel-default deckHeader">
+        		<div class="panel-heading " >
+        			<h4 style="display:inline-block">Available Cards</h4>
+    			</div>
+
+        		<div class="panel-body">
+                   	<div class="row">
+                   		<div class="col col-sm-6">
+                   			<input class="searchBar" id="searchBar" type="text" placeholder="Search for card..." ng-model="searchText">
+                   		</div>
+                   		<div class="col col-sm-6">
+                   			<div class="btn-group" >
+							  <label class="btn btn-default" ng-class="{'active': displayFilter['food']}">
+							    <input type="checkbox" ng-click="typeFilter('food')"> 
+							    <img src="https://png.icons8.com/poultry-leg-filled/ios7/25" title="Food" width="20" height="20">
+							  </label>
+							  <label class="btn btn-default" ng-class="{'active': displayFilter['morale']}">
+							    <input type="checkbox" ng-click="typeFilter('morale')"> 
+							    <img src="https://png.icons8.com/happy/ios7/25" title="Morale" width="20" height="20"> 
+							  </label>
+							  <label class="btn btn-default" ng-class="{'active': displayFilter['engine']}">
+							    <input type="checkbox" ng-click="typeFilter('engine')">
+							    <img src="https://png.icons8.com/catapult/ios7/25" title="Siege Engines" width="20" height="20">
+							  </label>
+							  <label class="btn btn-default" ng-class="{'active': displayFilter['defense']}">
+							    <input type="checkbox" ng-click="typeFilter('defense')">
+							    <img src="https://png.icons8.com/defense/androidL/24" title="Defense" width="20" height="20"> 
+							  </label>
+							  <label class="btn btn-default" ng-class="{'active': displayFilter['spy']}">
+							    <input type="checkbox" ng-click="typeFilter('spy')">
+							    <img src="https://png.icons8.com/spy-male-filled/ios7/25" title="Espionage" width="20" height="20">
+							  </label>
+							</div>
+                   		</div>
+                   	</div> 
+            	</div>
+
+            
+		 	</div>
+					
+			<table class="table table-hover">
+				<tr>
+					<th class>Qty</th>
+					<th>Name</th>
+					<th>Points</th>
+					<th>Action</th>
+				</tr>
+				<tr ng-repeat="card in cards  | filter: {isMonarch: isMonarch} | filter: {display: true} | filter: searchText " ng-show="toggleFilter(card.type_id)">
+				<!-- | filter: {selected: false} -->
+
+					@include('tablerow')
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+</div>
 	
 		@include('cardModal')
 	</div>

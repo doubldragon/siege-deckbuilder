@@ -31,7 +31,6 @@ function Controller($scope, $http) {
 		$scope.deckPoints += card.quantity * card.deck_points;
 
 		});
-		console.log($scope.deckPoints);
 	}
 	if (deck.isEdit){
 		$scope.cards = JSON.parse(deck.cardlist);
@@ -64,7 +63,6 @@ function Controller($scope, $http) {
 			card.quantity = 0;
 			card.selected = false;
 		});
-		console.log($scope.cards);
 		$scope.deckName = "";
 		deck.isEdit = false;
 		$scope.isEdit = false;
@@ -78,7 +76,7 @@ function Controller($scope, $http) {
 
 	$scope.toggleFaction = function (isMonarch) {
 		$scope.isMonarch = isMonarch;
-		console.log($scope.isMonarch);
+		
 	}
 
 	$scope.updateQty = function (value, card) {
@@ -93,7 +91,6 @@ function Controller($scope, $http) {
 	};
 
 	$scope.revealCards = function(card) {
-		console.log("why hello!");
 		$scope.selectLead = true;
 		$scope.leader = card;
 
@@ -105,7 +102,6 @@ function Controller($scope, $http) {
 
 	$scope.openDeck = function (){
 		$scope.deckSelect = JSON.parse($("#deckSelect option:selected").val());
-		console.log($scope.deckSelect);
 		$scope.leader = $scope.deckSelect.leader;
 		$scope.cards = JSON.parse($scope.deckSelect.cards);
 		$scope.deckPoints = $scope.getTotal();
@@ -114,7 +110,6 @@ function Controller($scope, $http) {
 	
 	$scope.cardModal = function (card){
 		$scope.mCard = card;
-		console.log($scope.mCard.name);
 		}
 
 	$scope.typeFilter = function (value) { 
@@ -123,13 +118,9 @@ function Controller($scope, $http) {
 	
 	$scope.toggleFilter = function (value) {
 		var typeArray = ["leader","castle", "food", "morale", "engine","defense","spy"];
-		// console.log(typeArray[value-1]);
-		// console.log(typeArray[value-1], " is ", $scope.displayFilter[typeArray[value-1]]);
 		return $scope.displayFilter[typeArray[value-1]];
 	}
 
 	$scope.checkScope = function () {
-		console.log(42);
-		console.log($scope);
 	}
 }
