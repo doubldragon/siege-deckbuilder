@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Deck;
+use App\Card_deck;
 use Illuminate\Http\Request;
 use Auth;
 use JavaScript;
@@ -50,23 +51,36 @@ class DeckController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+       
         // dd(gettype($request->user_id));
         $data = $request->all();
-
+        $cards = json_decode($data['userDeck'],true);
+        // $oneCard = $selectedCards[75];
+        // $oneCard['test'] = true;
+        // dd($oneCard['test']);
         $deck = Deck::create([
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
-                'cards' => $data['userDeck'],
+                // 'cards' => $data['userDeck'],
                 // 'isPrivate' => $data['isPrivate'],
-                'lead_id' => $data['lead_id'],
+                // 'lead_id' => $data['lead_id'],
                 'isMonarch' => $data['isMonarch'],
             ]);
+        foreach ($cards as $card) {
+            if ($card['selected']) {
+            // dd($deck);
+            $entry = Card_deck::create([
+                'deck_id' => $deck['id'],
+                'card_id' => $card['id'],
+                'quantity' => $card['quantity']
+                ]);
+        }
+        };
         
-        JavaScript::put([
-            'cardlist' => $deck['cards']
+        // JavaScript::put([
+        //     'cardlist' => $deck['cards']
             
-            ]);
+        //     ]);
 
         return redirect('/home');
     }
