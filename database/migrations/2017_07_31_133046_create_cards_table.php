@@ -29,11 +29,13 @@ class CreateCardsTable extends Migration
             $table->timestamps();
         });
 
-        // Schema::create('card_deck', function (Blueprint $table) {
-        //     $table->integer('deck_id');
-        //     $table->integer('card_id');
-        //     $table->integer('quantity');
-        // });
+        Schema::create('card_deck', function (Blueprint $table) {
+            $table->integer('deck_id')->unsigned();
+            $table->foreign('deck_id')->references('id')->on('decks');
+            $table->integer('card_id');
+            $table->foreign('card_id')->references('id')->on('cards');
+            $table->integer('quantity');
+        });
     }
 
     /**
