@@ -24,7 +24,7 @@ function Controller($scope, $http) {
 	
 
 
-
+	
 	$scope.getTotal = function () {
 		$scope.deckPoints = 0;
 		$scope.cards.forEach(function (card) {
