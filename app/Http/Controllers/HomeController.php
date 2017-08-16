@@ -57,20 +57,24 @@ class HomeController extends Controller
         ///////////////////////////////////
         // Get all of user's decks
         ///////////////////////////////////
-        $decks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
-        // foreach($decks as $deck) {
-        //     $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
-        //     $deck['leader'] = $testLead[0];
-        //     // dd($deck['leader']['isMonarch']);
-        //     if ($deck['leader']['isMonarch']){
-        //         $deck['faction'] = "Monarch";
-        //     } else {
-        //         $deck['faction'] = "Invader";
-        //     }
-        // }
+        $userDecks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
+        foreach($userDecks as $deck) {
+            // $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
+            $cardList = \App\Card_deck::where('deck_id', $deck['id'])->get();
+            $deck['cards'] = $cardList;
+            $testLead = $this->findLeader($deck['cards']);
+            
+            $deck['leader'] = $testLead;
+            // dd($deck['leader']['isMonarch']);
+            if ($deck['leader']['isMonarch']){
+                $deck['faction'] = "Monarch";
+            } else {
+                $deck['faction'] = "Invader";
+            }
+        }
         
         JavaScript::put([
-            'decks' => $decks,
+            'decks' => $userDecks,
             'allDecks' => $allDecks
             ]);
         return view('home', compact('decks'));
