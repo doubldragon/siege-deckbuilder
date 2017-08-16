@@ -54,10 +54,11 @@ class DeckController extends Controller
        
         // dd(gettype($request->user_id));
         $data = $request->all();
+        
         $cards = json_decode($data['userDeck'],true);
         // $oneCard = $selectedCards[75];
         // $oneCard['test'] = true;
-        // dd($oneCard['test']);
+        // dd($data);
         $deck = Deck::create([
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
@@ -66,6 +67,12 @@ class DeckController extends Controller
                 // 'lead_id' => $data['lead_id'],
                 'isMonarch' => $data['isMonarch'],
             ]);
+        $entry = Card_deck::create([
+            'deck_id' => $deck['id'],
+            'card_id' => $data['lead_id'],
+            'quantity' => 1
+            ]);
+        // dd($entry);
         foreach ($cards as $card) {
             if ($card['selected']) {
             // dd($deck);

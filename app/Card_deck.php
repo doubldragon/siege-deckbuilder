@@ -18,4 +18,9 @@ class Card_deck extends Model
     {
         return $this->belongsTo('App\Deck');
     }
+
+        public function card()
+    {
+        return $this->hasOne('App\Card');
+    }
 }
