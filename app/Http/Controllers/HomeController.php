@@ -37,16 +37,9 @@ class HomeController extends Controller
         $allDecks = \App\Deck::orderBy('created_at','desc')->take(10)->get();
         foreach($allDecks as $deck) {
             $tempUser = \App\User::where('id', $deck['user_id'])->get();
-            $username = $tempUser[0]['username'];
-            $deck['username'] = $username;
-            $cardList = \App\Card_deck::where('deck_id', $deck['id'])->get();
-            $deck['cards'] = $cardList;
-            // dd($cardList[0]);
-            $testLead = $this->findLeader($deck['cards']); //\App\Card::where('id', $deck['lead_id'] )->get();
-            // dd($testLead);
-            $deck['leader'] = $testLead;
-            // dd($deck);
-            // dd($deck['leader']['isMonarch']);
+            $deck['username'] = $tempUser[0]['username'];
+            $deck['cards'] = \App\Card_deck::where('deck_id', $deck['id'])->get();
+            $deck['leader'] = $this->findLeader($deck['cards']); 
             if ($deck['leader']['isMonarch']){
                 $deck['faction'] = "Monarch";
             } else {
@@ -61,11 +54,8 @@ class HomeController extends Controller
         foreach($userDecks as $deck) {
             // $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
             $cardList = \App\Card_deck::where('deck_id', $deck['id'])->get();
-            $deck['cards'] = $cardList;
-            $testLead = $this->findLeader($deck['cards']);
-            
-            $deck['leader'] = $testLead;
-            // dd($deck['leader']['isMonarch']);
+            $deck['cards'] = \App\Card_deck::where('deck_id', $deck['id'])->get();
+            $deck['leader'] = $this->findLeader($deck['cards']);
             if ($deck['leader']['isMonarch']){
                 $deck['faction'] = "Monarch";
             } else {
@@ -81,12 +71,17 @@ class HomeController extends Controller
     }
 
     public function findLeader($cards) {
+        $cardList = array();
         foreach ($cards as $card) {
-            // dd($card['card_id']);
-            $test = \App\Card::find($card['card_id']);
-            if ($test['type_id'] == 1) {
-                return $test;
-            };
+            array_push($cardList, $card->card);
         };
+        $leader = array_filter($cardList,function ($card) {
+            return ($card['type_id'] == 1);
+        }) ;
+        return $leader[0];
+    }
+
+    public function leader ($card){
+        return ($card['type_id'] == 1);
     }
 }
