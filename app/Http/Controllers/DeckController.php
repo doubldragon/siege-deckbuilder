@@ -94,20 +94,16 @@ class DeckController extends Controller
         $user = Auth::id();
         $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
        
-        $deck['leader'] = $testLead[0];
-
         $deck['isEdit'] = true;
-        if ($deck['leader']['isMonarch']){
-            $deck['faction'] = "Monarch";
-        } else {
-            $deck['faction'] = "Invader";
-        };
-
+        $deck = $this->initializeDeck($deck);
+        // dd($deck);
         $userDecks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
         foreach ($userDecks as $userDeck) {
-            $lead = \App\Card::where('id',$userDeck['lead_id'])->get();
-            $userDeck['leader'] = $lead[0];
+            $userDeck = $this->initializeDeck($userDeck);
+            // $lead = \App\Card::where('id',$userDeck['lead_id'])->get();
+            // $userDeck['leader'] = $lead[0];
         };
+        // dd($userDecks);
 
         
         JavaScript::put([
@@ -119,6 +115,40 @@ class DeckController extends Controller
 
 
         return view('deckbuilder');
+    }
+
+    public function findLeader($cards) {
+        $cardList = array();
+        foreach ($cards as $card) {
+            array_push($cardList, $card->card);
+        };
+        $leader = array_filter($cardList,function ($card) {
+            return ($card['type_id'] == 1);
+        }) ;
+        return $leader[0];
+    }
+
+    public function initializeDeck ($deck) {
+        $deck['cards'] = \App\Card::where('type_id','!=',1)->where('isMonarch',$deck['isMonarch'])->get();
+        $selectedCards = \App\Card_deck::where('deck_id', $deck['id'])->get();
+        foreach ($deck['cards'] as $card) {
+            $test = array_filter(json_decode($selectedCards),function ($select) use($card){
+                return ($select->card_id == $card['id']);
+            });
+            if ($test) {
+                $match = array_pop($test);
+                $card['selected'] = true;
+                $card['quantity'] = $match->quantity;
+                $card['display'] = true;
+            } else{
+                $card['selected'] = false;
+                $card['quantity'] = 0;
+                $card['display'] = false;
+                }                ;
+        };
+        $deck['leader'] = $this->findLeader($selectedCards); 
+        $deck['faction'] = ($deck['leader']['isMonarch'] ? "Monarch" : "Invader");
+        return $deck;
     }
 
     /**
