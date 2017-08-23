@@ -52,19 +52,12 @@ class DeckController extends Controller
     public function store(Request $request)
     {
        
-        // dd(gettype($request->user_id));
         $data = $request->all();
         
         $cards = json_decode($data['userDeck'],true);
-        // $oneCard = $selectedCards[75];
-        // $oneCard['test'] = true;
-        // dd($data);
         $deck = Deck::create([
                 'user_id' => $data['user_id'],
                 'name' => $data['name'],
-                // 'cards' => $data['userDeck'],
-                // 'isPrivate' => $data['isPrivate'],
-                // 'lead_id' => $data['lead_id'],
                 'isMonarch' => $data['isMonarch'],
             ]);
         $entry = Card_deck::create([
@@ -72,10 +65,8 @@ class DeckController extends Controller
             'card_id' => $data['lead_id'],
             'quantity' => 1
             ]);
-        // dd($entry);
         foreach ($cards as $card) {
             if ($card['selected']) {
-            // dd($deck);
             $entry = Card_deck::create([
                 'deck_id' => $deck['id'],
                 'card_id' => $card['id'],
@@ -150,7 +141,6 @@ class DeckController extends Controller
      */
     public function update(Request $request, Deck $deck)
     {
-        // dd($request);
         $deck = Deck::find($request->deck_id);
         $deck['user_id'] = $request->user_id;
         $deck['name'] = $request->name;
@@ -171,7 +161,9 @@ class DeckController extends Controller
     public function destroy(Deck $deck)
     {
         $toDelete = Deck::find($deck->id);
+        $toDelete->card_decks->delete();
         $toDelete->delete();
+
         return redirect('/home');
     }
 }

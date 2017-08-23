@@ -49,7 +49,8 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col deckDisplay">
+                        @include('previewrow')
+<!--                         <div class="col deckDisplay">
                             <div ng-show="preLeader" class="row ">
                                 <span class="pull-right">
                                     <form class="form-inline" method="post" action="[[editAction]]">
@@ -65,12 +66,11 @@
                                 </span>
                             </div>
                             <h4 class="mt-2 mb-2" ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
-                            <!-- <h5 ng-show="preLeader" class="mb-4">[[deckPoints]]/[[maxPoints]] points</h5> -->
                             <ul>
                                 <li ng-repeat="card in previewCards" ng-show="card.selected" ng-click="cardModal(card)"><a href='#' data-toggle="modal" data-target="#myModal">[[card.quantity]]x [[card.name]]</a></li>
                             </ul>
 
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>  
@@ -90,22 +90,9 @@
                                     </td>
                                     
                                 </tr>
-                                <!-- <tr>
-                                    <td>
-                                        by [[deck.username]]
-                                    </td>
-                                </tr> -->
                             </table>
                         </div>
-                        <div class="col deckDisplay">
-                            
-                            <h4 class="mt-4 mb-2" ng-show="preLeader">[[preLeader]] - [[preFaction]]</h4>
-                            <!-- <h5 ng-show="preLeader" class="mb-4">[[deckPoints]]/[[maxPoints]] points</h5> -->
-                            <ul>
-                                <li ng-repeat="card in previewCards" ng-show="card.selected" ng-click="cardModal(card)"><a href='#' data-toggle="modal" data-target="#myModal">[[card.quantity]]x [[card.name]]</a></li>
-                            </ul>
-
-                        </div>
+                        @include('previewrow')
                     </div>
                 </div>
             </div>        

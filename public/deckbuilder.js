@@ -47,8 +47,8 @@ function Controller($scope, $http) {
 	$scope.previewDeck = function (deck) {
 		$scope.preLeader = deck.leader.name;
 		$scope.preFaction = deck.faction;
-
-		$scope.previewCards = JSON.parse(deck.cards);
+		$scope.deckOwner = deck.user_id;
+		$scope.previewCards = deck.cards;
 		$scope.editAction = "/decks/" + deck.id;
 		$scope.deleteAction = "/api/decks/" + deck.id;
 		$scope.activeDeck = deck.id;
@@ -71,7 +71,9 @@ function Controller($scope, $http) {
 
 	}
 
-
+	$scope.checkOwner = function (user) {
+		return (user == $scope.deckOwner);
+	}
 	
 
 	$scope.toggleFaction = function (isMonarch) {

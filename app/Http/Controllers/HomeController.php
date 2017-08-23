@@ -34,33 +34,21 @@ class HomeController extends Controller
         // Get ten most recent decks
         ///////////////////////////////////
 
-        $allDecks = \App\Deck::orderBy('created_at','desc')->take(10)->get();
+        $allDecks = \App\Deck::where('isPrivate', false)->orderBy('created_at','desc')->take(10)->get();
+        // dd($allDecks);
         foreach($allDecks as $deck) {
             $tempUser = \App\User::where('id', $deck['user_id'])->get();
             $deck['username'] = $tempUser[0]['username'];
-            $deck['cards'] = \App\Card_deck::where('deck_id', $deck['id'])->get();
-            $deck['leader'] = $this->findLeader($deck['cards']); 
-            if ($deck['leader']['isMonarch']){
-                $deck['faction'] = "Monarch";
-            } else {
-                $deck['faction'] = "Invader";
-            }
+            $deck = $this->initializeDeck($deck);
         }
-        
+
         ///////////////////////////////////
         // Get all of user's decks
         ///////////////////////////////////
         $userDecks = \App\Deck::where('user_id', $user)->orderBy('updated_at','desc')->get();
         foreach($userDecks as $deck) {
-            // $testLead = \App\Card::where('id', $deck['lead_id'] )->get();
             $cardList = \App\Card_deck::where('deck_id', $deck['id'])->get();
-            $deck['cards'] = \App\Card_deck::where('deck_id', $deck['id'])->get();
-            $deck['leader'] = $this->findLeader($deck['cards']);
-            if ($deck['leader']['isMonarch']){
-                $deck['faction'] = "Monarch";
-            } else {
-                $deck['faction'] = "Invader";
-            }
+            $deck = $this->initializeDeck($deck);
         }
         
         JavaScript::put([
@@ -81,7 +69,11 @@ class HomeController extends Controller
         return $leader[0];
     }
 
-    public function leader ($card){
-        return ($card['type_id'] == 1);
+    public function initializeDeck ($deck) {
+        $deck['cards'] = \App\Card_deck::where('deck_id', $deck['id'])->get();
+        $deck['leader'] = $this->findLeader($deck['cards']); 
+        $deck['faction'] = ($deck['leader']['isMonarch'] ? "Monarch" : "Invader");
+        return $deck;
     }
+
 }
