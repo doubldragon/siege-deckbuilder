@@ -1,7 +1,7 @@
 
 function Controller($scope, $http) {
 	$scope.cards = deck.cardlist;
-	// console.log($scope.cards);
+	console.log($scope.cards);
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
 	$scope.deckPoints = 0;
@@ -119,6 +119,7 @@ function Controller($scope, $http) {
 
 	$scope.typeFilter = function (value) { 
 		$scope.displayFilter[value] = !$scope.displayFilter[value];
+		console.log($scope.displayFilter);
 	}
 	
 	$scope.toggleFilter = function (value) {

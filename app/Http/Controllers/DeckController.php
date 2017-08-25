@@ -129,7 +129,7 @@ class DeckController extends Controller
     }
 
     public function initializeDeck ($deck) {
-        $deck['cards'] = \App\Card::where('type_id','!=',1)->where('isMonarch',$deck['isMonarch'])->get();
+        $deck['cards'] = \App\Card::where('type_id','!=',1)->where('isMonarch',$deck['isMonarch'])->orderBy('type_id')->get();
         $selectedCards = \App\Card_deck::where('deck_id', $deck['id'])->get();
         foreach ($deck['cards'] as $card) {
             $test = array_filter(json_decode($selectedCards),function ($select) use($card){
@@ -139,15 +139,17 @@ class DeckController extends Controller
                 $match = array_pop($test);
                 $card['selected'] = true;
                 $card['quantity'] = $match->quantity;
-                $card['display'] = true;
+                
             } else{
                 $card['selected'] = false;
                 $card['quantity'] = 0;
-                $card['display'] = false;
-                }                ;
+                // $card['display'] = false;
+                }
+            $card['display'] = true;                ;
         };
         $deck['leader'] = $this->findLeader($selectedCards); 
         $deck['faction'] = ($deck['leader']['isMonarch'] ? "Monarch" : "Invader");
+
         return $deck;
     }
 

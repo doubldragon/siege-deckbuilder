@@ -113,6 +113,7 @@
                    	</div> 
             	</div>
 		 	</div>
+		 	<div class="cardTable">
 			<table class="table table-hover">
 				<tr>
 					<th class>Qty</th>
@@ -125,6 +126,7 @@
 				</tr>
 
 			</table>
+			</div>
 		</div>
 		<div class='col' id='availableCards'>
 			<button class="btn btn-warning mb-3" ng-click="resetForm()">Reset Builder</button>
@@ -167,7 +169,7 @@
 
             
 		 	</div>
-					
+			<div class="cardTable">		
 			<table class="table table-hover">
 				<tr>
 					<th class>Qty</th>
@@ -182,6 +184,7 @@
 				</tr>
 
 			</table>
+			</div>
 		</div>
 	</div>
 
