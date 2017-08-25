@@ -20,7 +20,7 @@
 	<a href="#" ng-click="cardModal(card)" data-toggle="modal" data-target="#myModal">[[card.name]]</a>
 </td>
 <td>
-	[[card.type_id]]
+	[[card.deck_points]]
 </td>
 <td>
 	<img src="[[card.type_icon]]" width="25" height="25">
