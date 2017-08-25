@@ -25,15 +25,12 @@ class CreateCardsTable extends Migration
             $table->string('action');
             $table->string('effect');
             $table->string('flavor_text');
+            $table->boolean('isActive')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });
 
-        // Schema::create('card_deck', function (Blueprint $table) {
-        //     $table->integer('deck_id');
-        //     $table->integer('card_id');
-        //     $table->integer('quantity');
-        // });
+
     }
 
     /**

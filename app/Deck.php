@@ -23,4 +23,9 @@ class Deck extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function card_decks()
+    {
+        return $this->hasMany('App\Card_deck');
+    }
+
 }

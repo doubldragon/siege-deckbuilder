@@ -1,6 +1,7 @@
 
 function Controller($scope, $http) {
 	$scope.cards = deck.cardlist;
+	console.log($scope.cards);
 	$scope.decks = deck.decks;
 	$scope.selectLead = false;
 	$scope.deckPoints = 0;
@@ -26,6 +27,8 @@ function Controller($scope, $http) {
 
 	
 	$scope.getTotal = function () {
+		// console.log($scope.cards);
+		
 		$scope.deckPoints = 0;
 		$scope.cards.forEach(function (card) {
 		$scope.deckPoints += card.quantity * card.deck_points;
@@ -33,22 +36,22 @@ function Controller($scope, $http) {
 		});
 	}
 	if (deck.isEdit){
-		$scope.cards = JSON.parse(deck.cardlist);
+		$scope.cards = deck.cardlist;
 		$scope.leader = deck.editDeck.leader;
 		$scope.selectLead = true;
 		$scope.deck_id = deck.editDeck.id;
 		$scope.deckName = deck.editDeck.name;
 		$scope.isEdit = true;
 		$scope.editAction =  "../api/decks/" + $scope.deck_id;
-		$scope.isMonarch = deck.editDeck.leader.isMonarch;
+		$scope.isMonarch = deck.editDeck.isMonarch;
 		$scope.getTotal();
 	}
 
 	$scope.previewDeck = function (deck) {
 		$scope.preLeader = deck.leader.name;
 		$scope.preFaction = deck.faction;
-
-		$scope.previewCards = JSON.parse(deck.cards);
+		$scope.deckOwner = deck.user_id;
+		$scope.previewCards = deck.cards;
 		$scope.editAction = "/decks/" + deck.id;
 		$scope.deleteAction = "/api/decks/" + deck.id;
 		$scope.activeDeck = deck.id;
@@ -71,7 +74,9 @@ function Controller($scope, $http) {
 
 	}
 
-
+	$scope.checkOwner = function (user) {
+		return (user == $scope.deckOwner);
+	}
 	
 
 	$scope.toggleFaction = function (isMonarch) {
@@ -114,10 +119,12 @@ function Controller($scope, $http) {
 
 	$scope.typeFilter = function (value) { 
 		$scope.displayFilter[value] = !$scope.displayFilter[value];
+		console.log($scope.displayFilter);
 	}
 	
 	$scope.toggleFilter = function (value) {
 		var typeArray = ["leader","castle", "food", "morale", "engine","defense","spy"];
+		console.log(value);
 		return $scope.displayFilter[typeArray[value-1]];
 	}
 

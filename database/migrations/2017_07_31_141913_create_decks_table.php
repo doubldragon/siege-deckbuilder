@@ -18,14 +18,13 @@ class CreateDecksTable extends Migration
             $table->string('name');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->json('cards');
-            // $table->boolean('isPrivate');
-            $table->integer('lead_id')->unsigned();
-            $table->foreign('lead_id')->references('id')->on('cards');
+            $table->boolean('isPrivate')->default(false);
             $table->boolean('isMonarch');
             $table->softDeletes();
             $table->timestamps();
         });
+
+        
     }
 
     /**
@@ -36,5 +35,6 @@ class CreateDecksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('decks');
+        
     }
 }
