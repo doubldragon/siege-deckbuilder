@@ -173,15 +173,73 @@ class DeckController extends Controller
      */
     public function update(Request $request, Deck $deck)
     {
+        $cards = json_decode($request->userDeck);
+        
         $deck = Deck::find($request->deck_id);
-        $deck['user_id'] = $request->user_id;
-        $deck['name'] = $request->name;
-        $deck['cards'] = $request->userDeck;
-        $deck['isMonarch'] = $request->isMonarch;
-        $deck['lead_id'] = $request->lead_id;
-        $deck['id'] = $request->deck_id;
-        $deck->save();
+        $oldCards = Card_deck::where('deck_id', $request->deck_id)->get();
+        foreach ($oldCards as $card) {
+            $found = false;
+
+            foreach($cards as $key => $value) {
+                if ($value->id == $card->card_id) {
+                    $found = true;
+                    $currentEntry = (Card_deck::where('deck_id',$request->deck_id)->where('card_id',$value->id)->get())[0];
+                    if ($currentEntry['quantity'] != $cards[$key]->quantity){
+                        $currentEntry['quantity'] = $cards[$key]->quantity;
+                    }
+                    $currentEntry->save();
+                    
+                    break;
+                }            
+            }
+            if ($found) {
+                unset($cards[$key]);
+            }else {
+                $toDelete = (Card_deck::where('deck_id',$request->deck_id)->where('card_id',$card->card_id)->get())[0];
+                $toDelete->delete();
+                dd($toDelete);
+            }
+        }
+        // dd($cards[$key]->name);
+        // // $key = array_search(41, $);
+        // dd($key);
+        // $deck['user_id'] = $request->user_id;
+        // $deck['name'] = $request->name;
+        // $deck['isMonarch'] = $request->isMonarch;
+        // // $deck['lead_id'] = $request->lead_id;
+        // $deck['id'] = $request->deck_id;
+        // $deck->save();
+        
+        ///////////////////
+        // $data = $request->all();
+        
+        // $cards = json_decode($data['userDeck'],true);
+        // $deck = Deck::create([
+        //         'user_id' => $data['user_id'],
+        //         'name' => $data['name'],
+        //         'isMonarch' => $data['isMonarch'],
+        //     ]);
+        
+
+        // $entry = Card_deck::create([
+        //     'deck_id' => $deck['id'],
+        //     'card_id' => $data['lead_id'],
+        //     'quantity' => 1
+        //     ]);
+        // foreach ($cards as $card) {
+        //     if ($card['selected']) {
+        //     $entry = Card_deck::create([
+        //         'deck_id' => $deck['id'],
+        //         'card_id' => $card['id'],
+        //         'quantity' => $card['quantity']
+        //         ]);
+        // }
+        // };
+
+        ///////////////////
         return redirect('/home');
+    
+
     }
 
     /**
