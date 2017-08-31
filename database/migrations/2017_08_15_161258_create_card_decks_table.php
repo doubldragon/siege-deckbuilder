@@ -14,6 +14,7 @@ class CreateCardDecksTable extends Migration
     public function up()
     {
         Schema::create('card_decks', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('deck_id')->unsigned();
             $table->foreign('deck_id')->references('id')->on('decks');
             $table->integer('card_id');
