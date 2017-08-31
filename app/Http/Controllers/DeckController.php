@@ -186,7 +186,12 @@ class DeckController extends Controller
         
         // Deck Entry from the previously saved deck
         $deck = Deck::find($request->deck_id);
-        
+        // dd($deck);
+        if ($request->name != $deck['name']) {
+            $deck['name'] = $request->name;
+            $deck->save();
+        }
+
         // Card_deck entries from the previously saved deck
         $oldCards = Card_deck::where('deck_id', $request->deck_id)->get();
         
@@ -235,7 +240,11 @@ class DeckController extends Controller
     public function destroy(Deck $deck)
     {
         $toDelete = Deck::find($deck->id);
-        $toDelete->card_decks->delete();
+        $card_decks = Card_deck::where ('deck_id', $deck->id)->get();
+        foreach ($card_decks as $each) {
+            $each->delete();
+        }
+        // $toDelete->card_decks->delete();
         $toDelete->delete();
 
         return redirect('/home');
