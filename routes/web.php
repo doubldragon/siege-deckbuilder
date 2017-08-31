@@ -33,3 +33,7 @@ Route::get('/card', function () {
 Route::get('/about', function () {
 	return view('about');
 });
+
+Route::get('/admin', function () {
+	return view('admin');
+});
