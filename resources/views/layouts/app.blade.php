@@ -43,6 +43,7 @@
                         <li ><a href="/home">Home</a></li>
                         <li ><a href="/deckbuilder">Deckbuilder</a></li>
                         <li ><a href="/about">About</a></li>
+                       
                     </ul>
 
                     <!-- Right Side Of Navbar -->
